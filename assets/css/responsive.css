@@ -1,0 +1,189 @@
+/* Responsive Design - Mobile Styles */
+
+@media (max-width: 768px) {
+    .window {
+        min-width: 90%;
+        min-height: 80%;
+        left: 5% !important;
+        top: 5% !important;
+    }
+    
+    .desktop-icon {
+        width: 60px;
+        height: 80px;
+    }
+    
+    .icon-image {
+        width: 36px;
+        height: 36px;
+        font-size: 18px;
+    }
+    
+    .icon-label {
+        font-size: 9px;
+    }
+    
+    .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .project-card {
+        padding: 15px;
+    }
+    
+    .start-menu {
+        width: 250px;
+    }
+    
+    .taskbar {
+        padding: 0 5px;
+    }
+    
+    .start-button {
+        padding: 5px 10px;
+        font-size: 11px;
+    }
+    
+    .taskbar-item {
+        padding: 5px 8px;
+        font-size: 11px;
+    }
+    
+    .system-tray {
+        font-size: 11px;
+        gap: 5px;
+    }
+    
+    .window-content {
+        padding: 15px;
+    }
+    
+    .loading-text {
+        font-size: 18px;
+    }
+    
+    .loading-bar {
+        width: 250px;
+        height: 15px;
+    }
+    
+    .social-links {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+    
+    .social-link {
+        width: 80%;
+        text-align: center;
+    }
+    
+    .music-player {
+        padding: 15px;
+    }
+    
+    .waveform {
+        height: 40px;
+    }
+    
+    .terminal-input {
+        width: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .desktop-icon {
+        width: 50px;
+        height: 70px;
+    }
+    
+    .icon-image {
+        width: 30px;
+        height: 30px;
+        font-size: 16px;
+    }
+    
+    .icon-label {
+        font-size: 8px;
+    }
+    
+    .window {
+        min-width: 95%;
+        min-height: 85%;
+        left: 2.5% !important;
+        top: 2.5% !important;
+    }
+    
+    .start-menu {
+        width: 200px;
+    }
+    
+    .loading-text {
+        font-size: 16px;
+    }
+    
+    .loading-bar {
+        width: 200px;
+        height: 12px;
+    }
+    
+    .project-card {
+        padding: 10px;
+    }
+    
+    .window-content {
+        padding: 10px;
+    }
+    
+    .terminal-input {
+        width: 150px;
+    }
+}
+
+/* Landscape orientation adjustments */
+@media (max-height: 500px) and (orientation: landscape) {
+    .window {
+        min-height: 90%;
+        top: 2% !important;
+    }
+    
+    .desktop-icon {
+        width: 50px;
+        height: 60px;
+    }
+    
+    .icon-image {
+        width: 30px;
+        height: 30px;
+        font-size: 14px;
+    }
+    
+    .loading-text {
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+    
+    .loading-bar {
+        height: 10px;
+    }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .icon-image {
+        border-width: 1px;
+    }
+    
+    .window {
+        border-width: 1px;
+    }
+    
+    .taskbar {
+        border-top-width: 1px;
+    }
+    
+    .start-menu {
+        border-width: 1px;
+    }
+}

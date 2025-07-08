@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Command Not Found | Thibault Twahirwa</title>
+    <style>
+        body {
+            background: #000;
+            color: #0ff;
+            font-family: 'Courier New', monospace;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+        .error-container {
+            padding: 40px;
+            border: 1px solid #0ff;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+        }
+        h1 {
+            font-size: 72px;
+            margin: 0;
+            animation: glitch 2s infinite;
+        }
+        @keyframes glitch {
+            0%, 100% { text-shadow: 0 0 5px rgba(0, 255, 255, 0.5); }
+            25% { text-shadow: -2px 0 #f0f, 2px 0 #0ff; }
+            50% { text-shadow: 2px 0 #f0f, -2px 0 #0ff; }
+            75% { text-shadow: 0 0 10px #fff; }
+        }
+        a {
+            color: #0ff;
+            text-decoration: none;
+            border-bottom: 1px dashed #0ff;
+        }
+        a:hover {
+            color: #fff;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <h1>404</h1>
+        <p>Command not found in the quantum realm</p>
+        <p style="margin-top: 30px;">
+            <a href="/">Return to Desktop →</a>
+        </p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,91 @@
+{
+  "contact": {
+    "email": "thibault.twahirwa@gmail.com",
+    "emailSubject": "Hello from your portfolio!",
+    "emailBody": "Hi Thibault,\n\nI found your portfolio and would love to connect!"
+  },
+  "socialMedia": [
+    {
+      "platform": "GitHub",
+      "username": "twahirwa",
+      "url": "https://github.com/twahirwa",
+      "icon": "🐙",
+      "description": "Open source projects and code repositories",
+      "primary": true
+    },
+    {
+      "platform": "LinkedIn", 
+      "username": "thibault-j-t",
+      "url": "https://linkedin.com/in/thibault-j-t",
+      "icon": "💼", 
+      "description": "Professional network and career updates",
+      "primary": true,
+      "fullName": "Thibault J. Twahirwa",
+      "tagline": "Connecting data science, sustainability, and innovation",
+      "experience": "7+ years in data science | Published researcher | Multilingual technologist",
+      "focus": [
+        "ESG Analytics & Sustainable Finance",
+        "Machine Learning Applications", 
+        "Quantum Computing Research",
+        "Open Source Contributions",
+        "Tech Leadership & Mentorship"
+      ]
+    },
+    {
+      "platform": "Spotify",
+      "username": "twahirwa", 
+      "url": "https://open.spotify.com/artist/twahirwa",
+      "icon": "🎵",
+      "description": "Music releases and playlists",
+      "primary": true
+    },
+    {
+      "platform": "YouTube",
+      "username": "@twahirwa",
+      "url": "https://youtube.com/@twahirwa", 
+      "icon": "📺",
+      "description": "Tech tutorials, music production, and data visualization content",
+      "featuredContent": [
+        "Data Sonification Tutorial Series",
+        "Building ESG Analytics with Python",
+        "Quantum Physics Explained Through Music", 
+        "Live DJ Sets & Production Streams"
+      ]
+    },
+    {
+      "platform": "Instagram",
+      "username": "@twahirwa",
+      "url": "https://instagram.com/twahirwa",
+      "icon": "📸", 
+      "description": "Behind the scenes of data science and music production",
+      "contentFocus": [
+        "Studio sessions & DJ setups",
+        "Data visualization art",
+        "Tech conference highlights",
+        "Coding aesthetics & workspace",
+        "NYC tech scene moments"
+      ]
+    },
+    {
+      "platform": "TikTok",
+      "username": "@twahirwa",
+      "url": "https://tiktok.com/@twahirwa",
+      "icon": "🎬",
+      "description": "Quick tech tips, finance insights, and music beats", 
+      "trendingContent": [
+        "60-second coding tutorials",
+        "ESG explained in under a minute",
+        "Beat-making challenges",
+        "Data science myths debunked",
+        "Quantum physics fun facts"
+      ]
+    }
+  ],
+  "academicProfiles": [
+    {
+      "platform": "Google Scholar",
+      "url": "https://scholar.google.com/citations?user=twahirwa",
+      "description": "Research publications and citations"
+    }
+  ]
+}

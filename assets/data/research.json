@@ -1,0 +1,50 @@
+{
+  "publications": [
+    {
+      "id": "quantum-dots-silver",
+      "title": "Quantum Dots & Silver Nanoparticles",
+      "description": "Enhanced heat transfer in quantum dots using synthesized silver nanoprism particles",
+      "journal": "MIT Research",
+      "year": "2014",
+      "status": "Published",
+      "technologies": ["Quantum Physics", "Nanotechnology", "Materials Science"],
+      "type": "Research Paper"
+    },
+    {
+      "id": "electron-impact-ionization", 
+      "title": "Electron Impact Ionization in Micro Discharges",
+      "description": "Experimental study of field emission-driven micro discharges and electron behavior",
+      "journal": "Journal of Physics",
+      "year": "2014",
+      "status": "Published",
+      "role": "Co-author",
+      "technologies": ["Plasma Physics", "Experimental Physics", "Research"],
+      "type": "Research Paper"
+    },
+    {
+      "id": "data-sonification",
+      "title": "Data Sonification for Pattern Recognition", 
+      "description": "Converting complex datasets into audio signals to identify hidden patterns",
+      "status": "Current Research",
+      "technologies": ["AI/ML", "Audio Processing", "Data Science"],
+      "type": "Ongoing Research"
+    }
+  ],
+  "researchInterests": [
+    "ESG Data Analytics",
+    "Climate Risk Modeling",
+    "Impact Investing Metrics", 
+    "Sustainable Portfolio Theory",
+    "Quantum Computing Applications",
+    "Data Sonification",
+    "Silver Nanoparticle Applications"
+  ],
+  "academicProfiles": {
+    "googleScholar": "https://scholar.google.com/citations?user=twahirwa"
+  },
+  "currentProjects": [
+    "Data Sonification for Pattern Recognition",
+    "ESG Analytics Platform Development",
+    "Quantum Music Generation Research"
+  ]
+}

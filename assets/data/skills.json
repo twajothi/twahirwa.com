@@ -1,0 +1,37 @@
+{
+  "technicalSkills": {
+    "programming": ["Python", "R", "SQL", "JavaScript", "C++"],
+    "frameworks": ["TensorFlow", "PyTorch", "Spark", "D3.js", "SpaCy"],
+    "tools": ["Qiskit", "NumPy", "MIDI", "Cloud Architecture"],
+    "domains": ["Machine Learning", "Data Science", "Quantum Computing", "NLP", "Audio Processing"]
+  },
+  "researchAreas": [
+    "ESG Data Analytics",
+    "Climate Risk Modeling", 
+    "Impact Investing Metrics",
+    "Sustainable Portfolio Theory",
+    "Physical Climate Risk: Geospatial Analysis",
+    "Transition Risk: ML Models",
+    "Impact Measurement: UN SDGs"
+  ],
+  "musicProduction": [
+    "Data Sonification",
+    "Algorithmic Composition",
+    "Electronic Music Production",
+    "DJ Performance",
+    "Beat Making",
+    "Audio Signal Processing"
+  ],
+  "languages": {
+    "fluent": ["English", "French", "Swahili"],
+    "conversational": ["Spanish"],
+    "academic": ["Latin"]
+  },
+  "certifications": [],
+  "openSourceContributions": [
+    "ESG Data Standardization Frameworks",
+    "Climate Scenario Analysis Tools", 
+    "Sentiment Analysis for ESG Risk",
+    "Portfolio Carbon Footprint Calculator"
+  ]
+}
