@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Sitemap: https://twahirwa.com/sitemap.xml
+
+# Block sensitive directories (if any)
+Disallow: /scripts/
+Disallow: /.git/

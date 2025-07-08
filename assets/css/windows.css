@@ -1,0 +1,91 @@
+/* Windows */
+.window {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.95);
+    border: 1px solid #0ff;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+    display: none;
+    flex-direction: column;
+    min-width: 400px;
+    min-height: 300px;
+}
+
+.window.active {
+    display: flex;
+    z-index: 1000;
+}
+
+.window-header {
+    background: linear-gradient(90deg, #0ff 0%, #00f 100%);
+    color: #000;
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: move;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.window-controls {
+    display: flex;
+    gap: 5px;
+}
+
+.window-control {
+    width: 16px;
+    height: 16px;
+    background: #000;
+    border: 1px solid #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    color: #fff;
+}
+
+.window-control:hover {
+    background: #333;
+}
+
+.window-content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    color: #0f0;
+    background: rgba(0, 0, 0, 0.8);
+}
+
+/* Terminal Window */
+.terminal-content {
+    font-family: 'Terminal', monospace;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.terminal-line {
+    margin-bottom: 10px;
+}
+
+.terminal-prompt {
+    color: #0ff;
+    margin-right: 5px;
+}
+
+.terminal-input {
+    background: none;
+    border: none;
+    color: #0f0;
+    font-family: inherit;
+    font-size: inherit;
+    outline: none;
+    width: 300px;
+}
+
+.terminal-cursor {
+    display: inline-block;
+    width: 8px;
+    height: 14px;
+    background: #0f0;
+}

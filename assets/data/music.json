@@ -1,0 +1,53 @@
+{
+  "artistName": "Twahirwa",
+  "genres": ["Electronic", "Data Sonification", "Algorithmic Music", "Experimental"],
+  "featuredTracks": [
+    {
+      "id": "algorithmic-dreams",
+      "title": "Algorithmic Dreams",
+      "duration": "3:24",
+      "spotifyUrl": "https://open.spotify.com/track/4uLU6hMCjMI75M1A2tKUQC",
+      "description": "AI-generated melodies based on machine learning patterns"
+    },
+    {
+      "id": "esg-beats-vol1",
+      "title": "ESG Beats Vol. 1", 
+      "duration": "4:12",
+      "spotifyUrl": "https://open.spotify.com/track/3Zwu2K0Qa5sT6teCCHPShP",
+      "description": "Sustainability data converted into rhythmic patterns"
+    },
+    {
+      "id": "neural-network-nights",
+      "title": "Neural Network Nights",
+      "duration": "5:18", 
+      "spotifyUrl": "https://open.spotify.com/track/2nLtzopw4rPReszdYBJU6h",
+      "description": "Deep learning algorithms transformed into ambient soundscapes"
+    },
+    {
+      "id": "quantum-frequencies",
+      "title": "Quantum Frequencies",
+      "duration": "4:45",
+      "spotifyUrl": "https://open.spotify.com/track/1A2B3C4D5E6F7G8H9I0J1K",
+      "description": "Quantum particle behavior translated into electronic music"
+    },
+    {
+      "id": "data-rhythms",
+      "title": "Data Rhythms",
+      "duration": "3:56",
+      "spotifyUrl": "https://open.spotify.com/track/2B3C4D5E6F7G8H9I0J1K2L",
+      "description": "Current playing track - data patterns as musical rhythms"
+    }
+  ],
+  "platforms": {
+    "spotify": "https://open.spotify.com/artist/twahirwa",
+    "youtube": "https://youtube.com/@twahirwa"
+  },
+  "musicStyle": "Data-driven electronic music that converts complex datasets, quantum physics, and machine learning patterns into audible compositions",
+  "equipment": ["Digital Audio Workstation", "MIDI Controllers", "Synthesizers", "Data Processing Tools"],
+  "collaborations": [],
+  "upcomingReleases": [
+    "Quantum Computing Symphony",
+    "ESG Beats Vol. 2", 
+    "Climate Data Sonification EP"
+  ]
+}
