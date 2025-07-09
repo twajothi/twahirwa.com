@@ -49,12 +49,12 @@ body {
 /* Desktop Icons */
 .desktop-icon {
     position: absolute;
-    width: 120px;
-    height: 140px;
+    width: 80px;
+    height: 100px;
     text-align: center;
     cursor: pointer;
     transition: all 0.2s;
-    padding: 15px;
+    padding: 10px;
 }
 
 .desktop-icon:hover {
@@ -68,16 +68,16 @@ body {
 }
 
 .icon-image {
-    width: 80px;
-    height: 80px;
+    width: 48px;
+    height: 48px;
     margin: 0 auto 5px;
     background: rgba(0, 255, 255, 0.1);
-    border: 3px solid #0ff;
-    border-radius: 12px;
+    border: 2px solid #0ff;
+    border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 36px;
+    font-size: 24px;
     transition: all 0.3s;
 }
 
@@ -93,7 +93,7 @@ body {
 
 .icon-label {
     color: #0ff;
-    font-size: 12px;
+    font-size: 11px;
     text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
     word-wrap: break-word;
 }
@@ -187,11 +187,11 @@ body {
 }
 
 .start-menu-items {
-    padding: 15px;
+    padding: 10px;
 }
 
 .start-menu-item {
-    padding: 15px;
+    padding: 10px;
     cursor: pointer;
     transition: all 0.2s;
     display: flex;
@@ -237,7 +237,7 @@ body {
     background: rgba(0, 255, 0, 0.2);
     border: 1px solid #0f0;
     padding: 2px 8px;
-    font-size: 12px;
+    font-size: 11px;
     color: #0f0;
 }
 
@@ -275,7 +275,7 @@ body {
 .social-link {
     color: #0ff;
     text-decoration: none;
-    padding: 15px;
+    padding: 10px;
     border: 1px solid #0ff;
     transition: all 0.3s;
     display: inline-block;
@@ -309,7 +309,7 @@ body {
 }
 
 .loading-text {
-    font-size: 36px;
+    font-size: 24px;
     margin-bottom: 20px;
     color: #0ff;
     text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
@@ -365,162 +365,4 @@ a {
 a:hover {
     color: #fff;
     text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
-}
-
-/* External Link Icons */
-a[href^="http"]:not([href*="twahirwa.com"])::after,
-a[href^="https"]:not([href*="twahirwa.com"])::after {
-    content: " 🔗";
-    font-size: 0.8em;
-    opacity: 0.7;
-    margin-left: 3px;
-}
-
-/* Platform-specific external link icons */
-a[href*="github.com"]::after {
-    content: " 🐙";
-}
-
-a[href*="linkedin.com"]::after {
-    content: " 💼";
-}
-
-a[href*="instagram.com"]::after {
-    content: " 📸";
-}
-
-a[href*="youtube.com"]::after,
-a[href*="youtu.be"]::after {
-    content: " 📺";
-}
-
-a[href*="tiktok.com"]::after {
-    content: " 🎬";
-}
-
-a[href*="spotify.com"]::after {
-    content: " 🎵";
-}
-
-a[href*="twitter.com"]::after,
-a[href*="x.com"]::after {
-    content: " 🐦";
-}
-
-a[href*="scholar.google"]::after {
-    content: " 🎓";
-}
-
-a[href^="mailto:"]::after {
-    content: " 📧";
-}
-
-a[href^="tel:"]::after {
-    content: " 📞";
-}
-
-/* Hover effects for external links */
-a[href^="http"]:hover::after,
-a[href^="https"]:hover::after,
-a[href^="mailto:"]::after {
-    opacity: 1;
-    transform: scale(1.1);
-    transition: all 0.2s ease;
-}
-
-/* Social link button enhancements */
-.social-link {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    transition: all 0.3s ease;
-}
-
-.social-link:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 255, 255, 0.3);
-}
-
-/* Technology badge icons */
-.tech-tag {
-    position: relative;
-}
-
-.tech-tag:before {
-    margin-right: 4px;
-}
-
-/* Technology-specific icons */
-.tech-tag:contains("Python"):before { content: "🐍"; }
-.tech-tag:contains("JavaScript"):before { content: "⚡"; }
-.tech-tag:contains("React"):before { content: "⚛️"; }
-.tech-tag:contains("TensorFlow"):before { content: "🧠"; }
-.tech-tag:contains("PyTorch"):before { content: "🔥"; }
-.tech-tag:contains("Qiskit"):before { content: "⚛️"; }
-.tech-tag:contains("D3"):before { content: "📊"; }
-.tech-tag:contains("SQL"):before { content: "🗄️"; }
-.tech-tag:contains("Cloud"):before { content: "☁️"; }
-.tech-tag:contains("Docker"):before { content: "🐳"; }
-.tech-tag:contains("Git"):before { content: "🌲"; }
-
-/* Favicon loading indicator */
-.favicon-loading {
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    background: linear-gradient(45deg, #00ffff, transparent, #00ffff);
-    border-radius: 50%;
-    animation: favicon-pulse 2s infinite;
-}
-
-@keyframes favicon-pulse {
-    0%, 100% { opacity: 0.5; transform: scale(0.8); }
-    50% { opacity: 1; transform: scale(1); }
-}
-
-/* PWA install prompt styling */
-.pwa-install-prompt {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: rgba(0, 255, 255, 0.9);
-    color: #000;
-    padding: 12px 20px;
-    border-radius: 8px;
-    border: 2px solid #00ffff;
-    font-family: 'Courier New', monospace;
-    font-size: 12px;
-    z-index: 10000;
-    cursor: pointer;
-    transform: translateY(100px);
-    transition: transform 0.3s ease;
-}
-
-.pwa-install-prompt.show {
-    transform: translateY(0);
-}
-
-.pwa-install-prompt:hover {
-    background: #00ffff;
-    transform: translateY(-2px);
-}
-
-/* Icon enhancement for better visibility */
-.window-header span:before {
-    margin-right: 8px;
-    font-size: 1.1em;
-}
-
-/* Responsive icon adjustments */
-@media (max-width: 768px) {
-    a[href^="http"]::after,
-    a[href^="https"]::after {
-        font-size: 0.7em;
-    }
-    
-    .tech-tag:before {
-        margin-right: 2px;
-        font-size: 0.9em;
-    }
 }

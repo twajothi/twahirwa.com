@@ -1,0 +1,36 @@
+{
+  "name": "twahirwa-portfolio",
+  "version": "2.0.0",
+  "description": "Thibault Twahirwa's personal portfolio website with dynamic content management",
+  "scripts": {
+    "start": "python3 -m http.server 8000",
+    "serve": "python3 -m http.server 8000",
+    "update-music": "node scripts/update-music.js",
+    "test-spotify": "node scripts/update-music.js",
+    "generate-favicons": "node scripts/generate-favicons.js",
+    "build": "node scripts/build.js"
+  },
+  "dependencies": {
+    "axios": "^1.6.0"
+  },
+  "devDependencies": {
+    "sharp": "^0.33.0"
+  },
+  "keywords": [
+    "portfolio",
+    "data-science",
+    "music-production",
+    "quantum-physics",
+    "twahirwa",
+    "github-pages",
+    "pwa",
+    "favicon"
+  ],
+  "author": "Thibault J. Twahirwa <thibault.twahirwa@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/twahirwa/twahirwa.com.git"
+  },
+  "homepage": "https://twahirwa.com"
+} 

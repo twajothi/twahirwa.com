@@ -1,10 +1,46 @@
 class Terminal {
     constructor() {
+        this.data = {};
+        this.commands = this.initCommands();
+    }
+    init() {
+        this.loadAllData().then(() => {
+            this.bindTerminalInput();
+        });
+    }
+
+    async loadAllData() {
+        const dataFiles = ['profile', 'social', 'music', 'projects', 'research'];
+        
+        for (const file of dataFiles) {
+            try {
+                const response = await fetch(`assets/data/${file}.json`);
+                this.data[file] = await response.json();
+            } catch (error) {
+                console.error(`Error loading ${file}.json for terminal:`, error);
+                this.data[file] = {};
+            }
+        }
+        
+        // Reinitialize commands with dynamic data
+        this.commands = this.initCommands();
+        console.log('✅ Terminal loaded data from all JSON files');
+    }
+
+    updateData(newData) {
+        this.data = newData;
         this.commands = this.initCommands();
     }
 
-    init() {
-        this.bindTerminalInput();
+    getSocialUrls() {
+        const socialUrls = {};
+        if (this.data && this.data.social && this.data.social.socialMedia) {
+            this.data.social.socialMedia.forEach(platform => {
+                const name = platform.platform.toLowerCase();
+                socialUrls[name] = platform.url;
+            });
+        }
+        return socialUrls;
     }
 
     bindTerminalInput() {
@@ -56,6 +92,13 @@ class Terminal {
     }
 
     initCommands() {
+        // Get URLs from appropriate JSON files
+        const socialUrls = this.getSocialUrls();
+        const musicUrls = this.data.music?.platforms || {};
+        const contact = this.data.profile?.contact;
+        const email = this.data.profile?.email;
+        const profile = this.data.profile;
+        
         return {
             'help': () => {
                 return 'Available commands:<br>' +
@@ -75,7 +118,9 @@ class Terminal {
                     '  exit      - Close terminal';
             },
             'about': () => {
-                return 'TWAHIRWA_OS v2.0 - Where data science meets music, and quantum physics powers creativity';
+                return profile?.title ? 
+                    `TWAHIRWA_OS v2.0 - ${profile.title}` :
+                    'TWAHIRWA_OS v2.0 - Where data science meets music, and quantum physics powers creativity';
             },
             'ls': () => {
                 return 'about.exe  projects.py  sustainable.cpp  research.ml  dj_mode.mp3  terminal.sh<br>' +
@@ -143,55 +188,81 @@ class Terminal {
                 return 'Opening contact window...';
             },
             'email': () => {
-                window.location.href = 'mailto:thibault.twahirwa@gmail.com';
+                if (contact && email) {
+                    window.location.href = `mailto:${email}?subject=${encodeURIComponent(contact.emailSubject)}&body=${encodeURIComponent(contact.emailBody)}`;
+                } else {
+                    window.location.href = 'mailto:thibault.twahirwa@gmail.com';
+                }
                 return 'Opening email client...';
             },
             'whoami': () => {
-                return '<span style="color: #0ff;">Thibault J. Twahirwa</span><br>' +
-                    '<span style="color: #888;">Data Scientist | Music Producer | Quantum Researcher</span><br>' +
-                    '<span style="color: #888;">Languages: EN/FR/SW/ES/LA | Location: NYC | Origin: 🇷🇼🇺🇸</span>';
+                const name = profile?.name || 'Thibault J. Twahirwa';
+                const title = profile?.title || 'Data Scientist | Music Producer | Quantum Researcher';
+                const location = profile?.contact?.locationText || profile?.location || 'NYC';
+                const origin = profile?.origin || '🇷🇼🇺🇸';
+                
+                return `<span style="color: #0ff;">${name}</span><br>` +
+                    `<span style="color: #888;">${title}</span><br>` +
+                    `<span style="color: #888;">Languages: EN/FR/SW/ES/LA | Location: ${location} | Origin: ${origin}</span>`;
             },
             'languages': () => {
-                return '<span style="color: #0ff;">Language capabilities:</span><br>' +
-                    '<span style="color: #0f0;">English</span> - Native<br>' +
-                    '<span style="color: #0f0;">Français</span> - Native<br>' +
-                    '<span style="color: #0f0;">Kiswahili</span> - Basic<br>' +
-                    '<span style="color: #0f0;">Español</span> - Basic<br>' +
-                    '<span style="color: #0f0;">Latin</span> - Basic (because quantum physics!)';
+                const languages = profile?.languages || ['English', 'French', 'Swahili', 'Spanish', 'Latin'];
+                let output = '<span style="color: #0ff;">Language capabilities:</span><br>';
+                languages.forEach(lang => {
+                    const level = lang === 'English' || lang === 'French' ? 'Native' : 
+                                 lang === 'Latin' ? 'Basic (because quantum physics!)' : 'Basic';
+                    output += `<span style="color: #0f0;">${lang}</span> - ${level}<br>`;
+                });
+                return output;
             },
             'lang': () => this.commands['languages'](),
             'spotify': () => {
-                window.open('https://open.spotify.com/artist/twahirwa', '_blank');
+                const url = socialUrls.spotify || musicUrls.spotify || 'https://open.spotify.com/artist/twahirwa';
+                window.open(url, '_blank');
                 return 'Opening Spotify profile...';
             },
             'youtube': () => {
-                window.open('https://youtube.com/@twahirwa', '_blank');
+                const url = socialUrls.youtube || musicUrls.youtube || 'https://youtube.com/@twahirwa';
+                window.open(url, '_blank');
                 return 'Opening YouTube channel...';
             },
             'yt': () => this.commands['youtube'](),
             'instagram': () => {
-                window.open('https://instagram.com/twahirwa', '_blank');
+                const url = socialUrls.instagram || 'https://instagram.com/twahirwa';
+                window.open(url, '_blank');
                 return 'Opening Instagram profile...';
             },
             'ig': () => this.commands['instagram'](),
             'tiktok': () => {
-                window.open('https://tiktok.com/@twahirwa', '_blank');
+                const url = socialUrls.tiktok || 'https://tiktok.com/@twahirwa';
+                window.open(url, '_blank');
                 return 'Opening TikTok profile...';
             },
             'tt': () => this.commands['tiktok'](),
             'linkedin': () => {
-                window.open('https://linkedin.com/in/thibault-j-t', '_blank');
+                const url = socialUrls.linkedin || 'https://linkedin.com/in/thibault-j-t';
+                window.open(url, '_blank');
                 return 'Opening LinkedIn profile...';
             },
             'li': () => this.commands['linkedin'](),
             'socials': () => {
-                return '<span style="color: #0ff;">Social Media Links:</span><br>' +
-                    '📺 YouTube: youtube.com/@twahirwa<br>' +
-                    '📸 Instagram: @twahirwa<br>' +
-                    '🎬 TikTok: @twahirwa<br>' +
-                    '💼 LinkedIn: linkedin.com/in/thibault-j-t<br>' +
-                    '🎵 Spotify: spotify.com/twahirwa<br>' +
-                    '<span style="color: #888;">Type any platform name to open!</span>';
+                let output = '<span style="color: #0ff;">Social Media Links:</span><br>';
+                
+                if (this.data.social?.socialMedia) {
+                    this.data.social.socialMedia.forEach(platform => {
+                        const icon = platform.icon || '🔗';
+                        output += `${icon} ${platform.platform}: ${platform.username || platform.url}<br>`;
+                    });
+                } else {
+                    output += '📺 YouTube: youtube.com/@twahirwa<br>' +
+                             '📸 Instagram: @twahirwa<br>' +
+                             '🎬 TikTok: @twahirwa<br>' +
+                             '💼 LinkedIn: linkedin.com/in/thibault-j-t<br>' +
+                             '🎵 Spotify: spotify.com/twahirwa<br>';
+                }
+                
+                output += '<span style="color: #888;">Type any platform name to open!</span>';
+                return output;
             },
             'clear': () => {
                 const output = document.getElementById('terminal-output');
