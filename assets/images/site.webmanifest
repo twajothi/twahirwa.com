@@ -1,0 +1,48 @@
+{
+  "name": "Thibault Twahirwa | Data Scientist × Music Producer × Quantum Researcher",
+  "short_name": "Twahirwa Portfolio",
+  "description": "Data Scientist, Music Producer, and Quantum Researcher portfolio showcasing projects at the intersection of technology and creativity",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "theme_color": "#00ffff",
+  "background_color": "#000000",
+  "categories": ["portfolio", "technology", "music", "science"],
+  "lang": "en",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/assets/images/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/images/favicon-16x16.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/images/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/images/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/images/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/images/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+} 

@@ -1,53 +1,31 @@
 {
-  "artistName": "Twahirwa",
-  "genres": ["Electronic", "Data Sonification", "Algorithmic Music", "Experimental"],
+  "artistName": "T-SquareJ",
+  "genres": ["Afro-house", "Afro-beat", "dancehall", "Data Sonification", "Algorithmic Music", "Experimental"],
   "featuredTracks": [
     {
-      "id": "algorithmic-dreams",
-      "title": "Algorithmic Dreams",
-      "duration": "3:24",
-      "spotifyUrl": "https://open.spotify.com/track/4uLU6hMCjMI75M1A2tKUQC",
-      "description": "AI-generated melodies based on machine learning patterns"
+      "id": "kizunguzungu-1",
+      "title": "Kizunguzungu", 
+      "duration": "2:38",
+      "spotifyUrl": "https://open.spotify.com/track/3YaX5qUFsmYTQWbfenqCtU?si=ff90345c5fd54fc6",
+      "description": "A song about the beauty of the African continent"
     },
     {
-      "id": "esg-beats-vol1",
-      "title": "ESG Beats Vol. 1", 
-      "duration": "4:12",
-      "spotifyUrl": "https://open.spotify.com/track/3Zwu2K0Qa5sT6teCCHPShP",
-      "description": "Sustainability data converted into rhythmic patterns"
-    },
-    {
-      "id": "neural-network-nights",
-      "title": "Neural Network Nights",
-      "duration": "5:18", 
-      "spotifyUrl": "https://open.spotify.com/track/2nLtzopw4rPReszdYBJU6h",
-      "description": "Deep learning algorithms transformed into ambient soundscapes"
-    },
-    {
-      "id": "quantum-frequencies",
-      "title": "Quantum Frequencies",
-      "duration": "4:45",
-      "spotifyUrl": "https://open.spotify.com/track/1A2B3C4D5E6F7G8H9I0J1K",
-      "description": "Quantum particle behavior translated into electronic music"
-    },
-    {
-      "id": "data-rhythms",
-      "title": "Data Rhythms",
-      "duration": "3:56",
-      "spotifyUrl": "https://open.spotify.com/track/2B3C4D5E6F7G8H9I0J1K2L",
-      "description": "Current playing track - data patterns as musical rhythms"
+      "id": "dance-in-kigali-1",
+      "title": "Dance in Kigali",
+      "duration": "3:40", 
+      "spotifyUrl": "https://open.spotify.com/track/2jSPWwYFyVss3m0pxu3W6u?si=1234567890",
+      "description": "Electric Dance in Kigali"
     }
   ],
   "platforms": {
-    "spotify": "https://open.spotify.com/artist/twahirwa",
-    "youtube": "https://youtube.com/@twahirwa"
+    "spotify": "https://open.spotify.com/artist/1zMYW2mNBr1VFO6iuOh7F9?si=y9FUp4dLRBWqMH3N_RpESA",
+    "youtube": "https://www.youtube.com/@tjtmusic5833"
   },
-  "musicStyle": "Data-driven electronic music that converts complex datasets, quantum physics, and machine learning patterns into audible compositions",
-  "equipment": ["Digital Audio Workstation", "MIDI Controllers", "Synthesizers", "Data Processing Tools"],
+  "musicStyle": "Data-driven Afro-house music that converts complex datasets, quantum physics, and machine learning patterns into audible compositions",
+  "equipment": ["Computer", "DJ Equipment"],
+
   "collaborations": [],
   "upcomingReleases": [
-    "Quantum Computing Symphony",
-    "ESG Beats Vol. 2", 
-    "Climate Data Sonification EP"
+    "Loading..."
   ]
 }

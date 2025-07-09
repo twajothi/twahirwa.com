@@ -1,0 +1,63 @@
+{
+  "name": "Thibault J. Twahirwa",
+  "title": "Data Scientist • Music Producer • Quantum Enthusiast",
+  "email": "thibault.twahirwa@gmail.com",
+  "location": "NYC",
+  "origin": "Rwandan-American 🇷🇼🇺🇸",
+  "languages": ["English", "French", "Swahili", "Spanish", "Latin"],
+  "website": {
+    "domain": "https://twahirwa.com",
+    "title": "Thibault Twahirwa | Data Scientist × Music Producer × Quantum Researcher",
+    "description": "Portfolio of Thibault Twahirwa - Data Scientist specializing in ESG analytics, music producer, and quantum physics researcher. Exploring the intersection of technology, sustainability, and creativity.",
+    "keywords": "Thibault Twahirwa, Data Science, Machine Learning, ESG Analytics, Sustainable Finance, Music Production, Quantum Physics, Python, AI, NYC Tech",
+    "author": "Thibault J. Twahirwa",
+    "ogTitle": "Thibault Twahirwa | Data × Music × Physics",
+    "ogDescription": "Data Scientist, Music Producer, Quantum Researcher. Building at the intersection of technology and creativity.",
+    "images": {
+      "ogImage": "https://twahirwa.com/assets/images/og-image.jpg",
+      "profile": "https://twahirwa.com/assets/images/profile.jpg",
+      "favicon": "/assets/images/favicon.ico",
+      "appleTouchIcon": "/assets/images/apple-touch-icon.png",
+      "favicon32": "/assets/images/favicon-32x32.png",
+      "favicon16": "/assets/images/favicon-16x16.png"
+    }
+  },
+  "contact": {
+    "emailSubject": "Hello from your portfolio!",
+    "emailBody": "Hi Thibault,\n\nI found your portfolio and would love to connect!",
+    "displayText": "📧 thibault.twahirwa@gmail.com",
+    "locationText": "📍 NYC | 🇷🇼🇺🇸 Rwandan-American"
+  },
+  "education": [
+    {
+      "degree": "Physics",
+      "school": "Morehouse"
+    },
+    {
+      "degree": "Electrical Engineering", 
+      "school": "Notre Dame"
+    },
+    {
+      "degree": "Applied Analytics",
+      "school": "Columbia"
+    }
+  ],
+  "techStack": ["Python", "R", "SQL", "TensorFlow", "PyTorch", "Spark", "Cloud Architecture"],
+  "research": ["Silver nanoparticles", "Quantum dots", "Millimeter-wave antennas"],
+  "currentFocus": ["ESG analytics", "AI/ML applications", "Electronic music production"],
+  "passions": ["Sustainable technology", "Algorithmic music", "Quantum mechanics", "Data sonification"],
+  "interests": [
+    "Data Science & Machine Learning",
+    "Sustainable Technology & ESG Analytics", 
+    "Music Production & Data Sonification",
+    "Quantum Computing & Physics Research",
+    "Open Source Projects",
+    "Cross-cultural Tech Innovation"
+  ],
+  "funFacts": [
+    "Published researcher in quantum physics",
+    "DJ who converts data into music", 
+    "Speaks 5 languages (including Latin!)",
+    "Once synthesized silver nanoparticles that improved quantum dot efficiency"
+  ]
+}
