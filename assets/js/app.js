@@ -530,27 +530,19 @@ class TwahirwaOS {
     }
 
     updateSocialLinks(socialMedia) {
-        // Create a map of platform to URL for easy lookup
+        // Map platform name (lower-cased) → url from social.json
         const platformUrls = {};
-        socialMedia.forEach(platform => {
-            platformUrls[platform.platform.toLowerCase()] = platform.url;
+        socialMedia.forEach(({ platform, url }) => {
+            if (platform && url) {
+                platformUrls[platform.toLowerCase()] = url;
+            }
         });
-        
-        // Update all hardcoded social links
-        const linkMappings = [
-            { selector: 'a[href*="github.com/twajothi"]', platform: 'github' },
-            { selector: 'a[href*="linkedin.com/in/thibault-j-t"]', platform: 'linkedin' },
-            { selector: 'a[href*="instagram.com/dj_t_square_j"]', platform: 'instagram' },
-            { selector: 'a[href*="youtube.com/@tjtmusic5833"]', platform: 'youtube' },
-            { selector: 'a[href*="tiktok.com/@twahirwa"]', platform: 'tiktok' }
-        ];
-        
-        linkMappings.forEach(mapping => {
-            const elements = document.querySelectorAll(mapping.selector);
-            if (platformUrls[mapping.platform]) {
-                elements.forEach(element => {
-                    element.href = platformUrls[mapping.platform];
-                });
+
+        // Update every <a data-platform="{platform}"> with the correct URL
+        document.querySelectorAll('a[data-platform]').forEach((anchor) => {
+            const key = anchor.getAttribute('data-platform')?.toLowerCase();
+            if (key && platformUrls[key]) {
+                anchor.href = platformUrls[key];
             }
         });
     }
