@@ -4,7 +4,7 @@
     {
       "id": "esg-analytics",
       "title": "ESG Analytics Platform", 
-      "description": "...under construction...",
+      "description": "...under construction....",
       "technologies": ["Python", "Spark", "D3.js", "Cloud"],
       "github": "https://github.com/twajothi/esg-analytics",
       "featured": true,
