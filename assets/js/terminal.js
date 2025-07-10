@@ -3,6 +3,7 @@ class Terminal {
         this.data = {};
         this.commands = this.initCommands();
     }
+    
     init() {
         this.loadAllData().then(() => {
             this.bindTerminalInput();
@@ -10,7 +11,7 @@ class Terminal {
     }
 
     async loadAllData() {
-        const dataFiles = ['profile', 'social', 'music', 'projects', 'research'];
+        const dataFiles = ['profile', 'social', 'music', 'projects', 'research', 'skills'];
         
         for (const file of dataFiles) {
             try {
@@ -34,13 +35,26 @@ class Terminal {
 
     getSocialUrls() {
         const socialUrls = {};
-        if (this.data && this.data.social && this.data.social.socialMedia) {
+        if (this.data?.social?.socialMedia) {
             this.data.social.socialMedia.forEach(platform => {
                 const name = platform.platform.toLowerCase();
-                socialUrls[name] = platform.url;
+                socialUrls[name] = {
+                    url: platform.url,
+                    username: platform.username,
+                    icon: platform.icon,
+                    description: platform.description
+                };
             });
         }
         return socialUrls;
+    }
+
+    getContactInfo() {
+        return {
+            email: this.data?.profile?.email || this.data?.social?.contact?.email,
+            subject: this.data?.profile?.contact?.emailSubject || this.data?.social?.contact?.emailSubject,
+            body: this.data?.profile?.contact?.emailBody || this.data?.social?.contact?.emailBody
+        };
     }
 
     bindTerminalInput() {
@@ -92,51 +106,260 @@ class Terminal {
     }
 
     initCommands() {
-        // Get URLs from appropriate JSON files
+        // Get all data from JSON files
         const socialUrls = this.getSocialUrls();
-        const musicUrls = this.data.music?.platforms || {};
-        const contact = this.data.profile?.contact;
-        const email = this.data.profile?.email;
-        const profile = this.data.profile;
+        const musicPlatforms = this.data?.music?.platforms || {};
+        const contactInfo = this.getContactInfo();
+        const profile = this.data?.profile || {};
+        const skills = this.data?.skills || {};
+        const projects = this.data?.projects?.projects || [];
+        const research = this.data?.research || {};
         
         return {
             'help': () => {
                 return 'Available commands:<br>' +
                     '  about     - Display system information<br>' +
                     '  whoami    - Show user profile<br>' +
+                    '  skills    - Show technical skills<br>' +
+                    '  languages - Show language capabilities<br>' +
+                    '  education - Show educational background<br>' +
+                    '  research  - Show research publications<br>' +
+                    '  projects  - Show featured projects<br>' +
+                    '  music     - Access music/DJ mode<br>' +
+                    '  socials   - Show all social media<br>' +
+                    '  contact   - Get contact information<br>' +
+                    '  email     - Send email directly<br>' +
                     '  ls        - List files<br>' +
                     '  cat       - Display file contents<br>' +
                     '  matrix    - Enter the Matrix<br>' +
-                    '  rain      - Toggle matrix rain intensity<br>' +
+                    '  rain      - Toggle matrix rain<br>' +
                     '  hack      - Activate hacker mode<br>' +
-                    '  music/dj  - Play some beats<br>' +
                     '  portfolio - Show portfolio value<br>' +
-                    '  languages - Show language skills<br>' +
-                    '  contact   - Open contact window<br>' +
-                    '  email     - Send email directly<br>' +
                     '  clear     - Clear terminal<br>' +
                     '  exit      - Close terminal';
             },
+            
             'about': () => {
-                return profile?.title ? 
-                    `TWAHIRWA_OS v2.0 - ${profile.title}` :
-                    'TWAHIRWA_OS v2.0 - Where data science meets music, and quantum physics powers creativity';
+                const name = profile?.name || 'Thibault J. Twahirwa';
+                const title = profile?.title || 'Data Scientist • Music Producer • Quantum Enthusiast';
+                const location = profile?.location || 'NYC';
+                const origin = profile?.origin || '🇷🇼🇺🇸';
+                
+                return `<span style="color: #0ff;">TWAHIRWA_OS v2.0</span><br>` +
+                    `<span style="color: #888;">${title}</span><br>` +
+                    `<span style="color: #888;">Location: ${location} | Origin: ${origin}</span>`;
             },
+
+            'whoami': () => {
+                const name = profile?.name || 'Thibault J. Twahirwa';
+                const title = profile?.title || 'Data Scientist • Music Producer • Quantum Enthusiast';
+                const location = profile?.location || 'NYC';
+                const origin = profile?.origin || '🇷🇼🇺🇸';
+                const languages = this.getLanguageList();
+                
+                return `<span style="color: #0ff;">${name}</span><br>` +
+                    `<span style="color: #888;">${title}</span><br>` +
+                    `<span style="color: #888;">Languages: ${languages} | Location: ${location} | Origin: ${origin}</span>`;
+            },
+
+            'skills': () => {
+                let output = '<span style="color: #0ff;">Technical Skills:</span><br>';
+                
+                if (skills?.technicalSkills) {
+                    const tech = skills.technicalSkills;
+                    if (tech.programming) {
+                        output += `<span style="color: #0f0;">Programming:</span> ${tech.programming.join(', ')}<br>`;
+                    }
+                    if (tech.frameworks) {
+                        output += `<span style="color: #0f0;">Frameworks:</span> ${tech.frameworks.join(', ')}<br>`;
+                    }
+                    if (tech.tools) {
+                        output += `<span style="color: #0f0;">Tools:</span> ${tech.tools.join(', ')}<br>`;
+                    }
+                    if (tech.domains) {
+                        output += `<span style="color: #0f0;">Domains:</span> ${tech.domains.join(', ')}<br>`;
+                    }
+                } else {
+                    output += '<span style="color: #888;">Skills data not available</span>';
+                }
+                
+                return output;
+            },
+
+            'languages': () => {
+                let output = '<span style="color: #0ff;">Language Capabilities:</span><br>';
+                
+                if (skills?.languages) {
+                    const langs = skills.languages;
+                    if (langs.fluent) {
+                        output += `<span style="color: #0f0;">Fluent:</span> ${langs.fluent.join(', ')}<br>`;
+                    }
+                    if (langs.conversational) {
+                        output += `<span style="color: #ff0;">Conversational:</span> ${langs.conversational.join(', ')}<br>`;
+                    }
+                    if (langs.academic) {
+                        output += `<span style="color: #f0f;">Academic:</span> ${langs.academic.join(', ')}<br>`;
+                    }
+                } else if (profile?.languages) {
+                    output += `<span style="color: #0f0;">Languages:</span> ${profile.languages.join(', ')}<br>`;
+                } else {
+                    output += '<span style="color: #888;">Language data not available</span>';
+                }
+                
+                return output;
+            },
+
+            'education': () => {
+                let output = '<span style="color: #0ff;">Educational Background:</span><br>';
+                
+                if (profile?.education) {
+                    profile.education.forEach(edu => {
+                        output += `<span style="color: #0f0;">${edu.degree}</span> @ <span style="color: #888;">${edu.school}</span><br>`;
+                    });
+                } else {
+                    output += '<span style="color: #888;">Education data not available</span>';
+                }
+                
+                return output;
+            },
+
+            'research': () => {
+                let output = '<span style="color: #0ff;">Research & Publications:</span><br>';
+                
+                if (research?.publications) {
+                    research.publications.forEach(pub => {
+                        output += `<span style="color: #0f0;">${pub.title}</span> (${pub.year})<br>`;
+                        output += `<span style="color: #888;">${pub.description}</span><br><br>`;
+                    });
+                } else {
+                    output += '<span style="color: #888;">Research data not available</span>';
+                }
+                
+                return output;
+            },
+
+            'projects': () => {
+                let output = '<span style="color: #0ff;">Featured Projects:</span><br>';
+                
+                const featured = projects.filter(p => p.featured);
+                if (featured.length > 0) {
+                    featured.forEach(project => {
+                        output += `<span style="color: #0f0;">${project.title}</span><br>`;
+                        output += `<span style="color: #888;">${project.description}</span><br>`;
+                        if (project.github) {
+                            output += `<span style="color: #0ff;">GitHub:</span> ${project.github}<br>`;
+                        }
+                        output += '<br>';
+                    });
+                } else {
+                    output += '<span style="color: #888;">Project data not available</span>';
+                }
+                
+                return output;
+            },
+
+            'music': () => {
+                if (window.windowManager) {
+                    window.windowManager.openWindow('music');
+                }
+                
+                let output = '<span style="color: #f0f;">🎵 DJ MODE ACTIVATED!</span><br>';
+                const artist = this.data?.music?.artistName;
+                if (artist) {
+                    output += `<span style="color: #888;">Artist: ${artist}</span><br>`;
+                }
+                
+                if (musicPlatforms?.spotify) {
+                    output += `<span style="color: #0f0;">Spotify:</span> ${musicPlatforms.spotify}<br>`;
+                }
+                
+                return output;
+            },
+
+            'dj': () => this.commands['music'](),
+
+            'socials': () => {
+                let output = '<span style="color: #0ff;">Social Media Profiles:</span><br>';
+                
+                Object.entries(socialUrls).forEach(([platform, data]) => {
+                    const icon = data.icon || '🔗';
+                    const username = data.username || 'N/A';
+                    output += `${icon} <span style="color: #0f0;">${platform}:</span> ${username}<br>`;
+                });
+                
+                output += '<br><span style="color: #888;">Type platform name to open (e.g., "github", "linkedin")</span>';
+                return output;
+            },
+
+            'contact': () => {
+                if (window.windowManager) {
+                    window.windowManager.openWindow('contact');
+                }
+                
+                const email = contactInfo.email;
+                const location = profile?.contact?.locationText || profile?.location;
+                
+                let output = '<span style="color: #0ff;">Contact Information:</span><br>';
+                if (email) {
+                    output += `<span style="color: #0f0;">Email:</span> ${email}<br>`;
+                }
+                if (location) {
+                    output += `<span style="color: #0f0;">Location:</span> ${location}<br>`;
+                }
+                
+                return output;
+            },
+
+            'email': () => {
+                const email = contactInfo.email;
+                const subject = contactInfo.subject || 'Hello from your portfolio!';
+                const body = contactInfo.body || 'Hi Thibault,\\n\\nI found your portfolio and would love to connect!';
+                
+                if (email) {
+                    window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                    return 'Opening email client...';
+                } else {
+                    return '<span style="color: #f00;">Email information not available</span>';
+                }
+            },
+
             'ls': () => {
-                return 'about.exe  projects.py  sustainable.cpp  research.ml  dj_mode.mp3  terminal.sh<br>' +
-                    'data_tools.sql  contact.msg  quantum.phys  youtube.exe  instagram.exe<br>' +
-                    'tiktok.exe  linkedin.exe  <span style="color: #f0f;">secret.lock</span>';
+                let files = [];
+                
+                // Add files based on available data
+                if (profile) files.push('about.exe');
+                if (projects.length > 0) files.push('projects.py');
+                if (research?.publications) files.push('research.ml');
+                if (this.data?.music) files.push('dj_mode.mp3');
+                if (skills) files.push('skills.json');
+                if (contactInfo.email) files.push('contact.msg');
+                
+                // Add social platform files
+                Object.keys(socialUrls).forEach(platform => {
+                    files.push(`${platform}.exe`);
+                });
+                
+                files.push('<span style="color: #f0f;">secret.lock</span>');
+                
+                return files.join('  ');
             },
+
             'cat secret.lock': () => {
                 return '<span style="color: #f0f;">Nice try! But you need the right key... 🔐</span>';
             },
+
             'cat quantum.phys': () => {
-                return '<span style="color: #0f0;">// Silver nanoparticle synthesis procedure<br>// Heat transfer coefficient: Δ = 0.42<br>// Quantum dot enhancement achieved!<br>// See published research for details...</span>';
+                if (research?.publications?.some(p => p.title.toLowerCase().includes('quantum'))) {
+                    return '<span style="color: #0f0;">// Quantum research data found<br>// Check research publications for details...</span>';
+                }
+                return '<span style="color: #0f0;">// Quantum physics algorithms<br>// Data processing in progress...</span>';
             },
+
             'matrix': () => {
                 document.body.classList.add('matrix-mode');
-                return '<span style="color: #0f0;">Welcome to the Matrix, Neo... Watch the $ flow!</span>';
+                return '<span style="color: #0f0;">Welcome to the Matrix... Watch the data flow!</span>';
             },
+
             'rain': () => {
                 if (window.matrixRain) {
                     const intensity = window.matrixRain.toggleIntensity();
@@ -145,22 +368,12 @@ class Terminal {
                     return '<span style="color: #f00;">Error: Matrix rain not initialized</span>';
                 }
             },
+
             'hack': () => {
                 document.body.classList.add('hacker-mode');
                 return '<span style="color: #0f0;">HACKER MODE ACTIVATED - You are now 1337!</span>';
             },
-            'music': () => {
-                if (window.windowManager) {
-                    window.windowManager.openWindow('music');
-                }
-                return 'Loading DJ mode...';
-            },
-            'dj': () => {
-                if (window.windowManager) {
-                    window.windowManager.openWindow('music');
-                }
-                return '<span style="color: #f0f;">🎵 DJ MODE ACTIVATED! Dropping beats... 🎵</span>';
-            },
+
             'portfolio': () => {
                 const output = document.getElementById('terminal-output');
                 const responseLine = document.createElement('div');
@@ -181,94 +394,13 @@ class Terminal {
                 }, 500);
                 return 'ASYNC';
             },
-            'contact': () => {
-                if (window.windowManager) {
-                    window.windowManager.openWindow('contact');
-                }
-                return 'Opening contact window...';
-            },
-            'email': () => {
-                if (contact && email) {
-                    window.location.href = `mailto:${email}?subject=${encodeURIComponent(contact.emailSubject)}&body=${encodeURIComponent(contact.emailBody)}`;
-                } else {
-                    window.location.href = 'mailto:thibault.twahirwa@gmail.com';
-                }
-                return 'Opening email client...';
-            },
-            'whoami': () => {
-                const name = profile?.name || 'Thibault J. Twahirwa';
-                const title = profile?.title || 'Data Scientist | Music Producer | Quantum Researcher';
-                const location = profile?.contact?.locationText || profile?.location || 'NYC';
-                const origin = profile?.origin || '🇷🇼🇺🇸';
-                
-                return `<span style="color: #0ff;">${name}</span><br>` +
-                    `<span style="color: #888;">${title}</span><br>` +
-                    `<span style="color: #888;">Languages: EN/FR/SW/ES/LA | Location: ${location} | Origin: ${origin}</span>`;
-            },
-            'languages': () => {
-                const languages = profile?.languages || ['English', 'French', 'Swahili', 'Spanish', 'Latin'];
-                let output = '<span style="color: #0ff;">Language capabilities:</span><br>';
-                languages.forEach(lang => {
-                    const level = lang === 'English' || lang === 'French' ? 'Native' : 
-                                 lang === 'Latin' ? 'Basic (because quantum physics!)' : 'Basic';
-                    output += `<span style="color: #0f0;">${lang}</span> - ${level}<br>`;
-                });
-                return output;
-            },
-            'lang': () => this.commands['languages'](),
-            'spotify': () => {
-                const url = socialUrls.spotify || musicUrls.spotify || 'https://open.spotify.com/artist/twahirwa';
-                window.open(url, '_blank');
-                return 'Opening Spotify profile...';
-            },
-            'youtube': () => {
-                const url = socialUrls.youtube || musicUrls.youtube || 'https://youtube.com/@twahirwa';
-                window.open(url, '_blank');
-                return 'Opening YouTube channel...';
-            },
-            'yt': () => this.commands['youtube'](),
-            'instagram': () => {
-                const url = socialUrls.instagram || 'https://instagram.com/twahirwa';
-                window.open(url, '_blank');
-                return 'Opening Instagram profile...';
-            },
-            'ig': () => this.commands['instagram'](),
-            'tiktok': () => {
-                const url = socialUrls.tiktok || 'https://tiktok.com/@twahirwa';
-                window.open(url, '_blank');
-                return 'Opening TikTok profile...';
-            },
-            'tt': () => this.commands['tiktok'](),
-            'linkedin': () => {
-                const url = socialUrls.linkedin || 'https://linkedin.com/in/thibault-j-t';
-                window.open(url, '_blank');
-                return 'Opening LinkedIn profile...';
-            },
-            'li': () => this.commands['linkedin'](),
-            'socials': () => {
-                let output = '<span style="color: #0ff;">Social Media Links:</span><br>';
-                
-                if (this.data.social?.socialMedia) {
-                    this.data.social.socialMedia.forEach(platform => {
-                        const icon = platform.icon || '🔗';
-                        output += `${icon} ${platform.platform}: ${platform.username || platform.url}<br>`;
-                    });
-                } else {
-                    output += '📺 YouTube: youtube.com/@twahirwa<br>' +
-                             '📸 Instagram: @twahirwa<br>' +
-                             '🎬 TikTok: @twahirwa<br>' +
-                             '💼 LinkedIn: linkedin.com/in/thibault-j-t<br>' +
-                             '🎵 Spotify: spotify.com/twahirwa<br>';
-                }
-                
-                output += '<span style="color: #888;">Type any platform name to open!</span>';
-                return output;
-            },
+
             'clear': () => {
                 const output = document.getElementById('terminal-output');
                 if (output) output.innerHTML = '';
                 return 'ASYNC';
             },
+
             'exit': () => {
                 if (window.windowManager) {
                     window.windowManager.closeWindow('terminal');
@@ -277,6 +409,84 @@ class Terminal {
             }
         };
     }
+
+    // Helper method to get language list as string
+    getLanguageList() {
+        if (this.data?.skills?.languages) {
+            const langs = this.data.skills.languages;
+            const allLangs = [
+                ...(langs.fluent || []),
+                ...(langs.conversational || []),
+                ...(langs.academic || [])
+            ];
+            return allLangs.map(lang => lang.substring(0, 2).toUpperCase()).join('/');
+        } else if (this.data?.profile?.languages) {
+            return this.data.profile.languages.map(lang => lang.substring(0, 2).toUpperCase()).join('/');
+        }
+        return 'EN/FR/SW/ES';
+    }
 }
+
+// Add dynamic social platform commands
+Terminal.prototype.addSocialCommands = function() {
+    const socialUrls = this.getSocialUrls();
+    
+    Object.entries(socialUrls).forEach(([platform, data]) => {
+        // Add full platform name command
+        this.commands[platform] = () => {
+            window.open(data.url, '_blank');
+            return `Opening ${platform} profile...`;
+        };
+        
+        // Add common abbreviations
+        const abbreviations = {
+            'github': ['gh', 'git'],
+            'linkedin': ['li', 'in'],
+            'instagram': ['ig', 'insta'],
+            'youtube': ['yt'],
+            'tiktok': ['tt', 'tok'],
+            'spotify': ['spot']
+        };
+        
+        if (abbreviations[platform]) {
+            abbreviations[platform].forEach(abbrev => {
+                this.commands[abbrev] = this.commands[platform];
+            });
+        }
+    });
+};
+
+// Override initCommands to include social commands
+const originalInitCommands = Terminal.prototype.initCommands;
+Terminal.prototype.initCommands = function() {
+    const commands = originalInitCommands.call(this);
+    
+    // Add social platform commands dynamically
+    const socialUrls = this.getSocialUrls();
+    Object.entries(socialUrls).forEach(([platform, data]) => {
+        commands[platform] = () => {
+            window.open(data.url, '_blank');
+            return `Opening ${platform} profile...`;
+        };
+        
+        // Add common abbreviations
+        const abbreviations = {
+            'github': ['gh', 'git'],
+            'linkedin': ['li', 'in'],
+            'instagram': ['ig', 'insta'],
+            'youtube': ['yt'],
+            'tiktok': ['tt', 'tok'],
+            'spotify': ['spot']
+        };
+        
+        if (abbreviations[platform]) {
+            abbreviations[platform].forEach(abbrev => {
+                commands[abbrev] = commands[platform];
+            });
+        }
+    });
+    
+    return commands;
+};
 
 window.Terminal = Terminal;
