@@ -1,41 +1,15 @@
 {
   "projects": [
-    {
-      "id": "quantum-music",
-      "title": "Quantum Music Generator",
-      "description": "Converting quantum particle behavior into musical compositions",
-      "technologies": ["Python", "Qiskit", "MIDI", "TensorFlow"],
-      "github": "https://github.com/twahirwa/quantum-music",
-      "featured": true,
-      "category": "AI/Music"
-    },
+ 
     {
       "id": "esg-analytics",
       "title": "ESG Analytics Platform", 
-      "description": "Open-source tools for sustainability data analysis and visualization",
+      "description": "...under construction...",
       "technologies": ["Python", "Spark", "D3.js", "Cloud"],
-      "github": "https://github.com/twahirwa/esg-analytics",
+      "github": "https://github.com/twajothi/esg-analytics",
       "featured": true,
       "category": "Sustainability"
-    },
-    {
-      "id": "silver-nanoparticle",
-      "title": "Silver Nanoparticle Simulator",
-      "description": "Modeling quantum dot heat transfer with silver nanoparticles", 
-      "technologies": ["Python", "NumPy", "Physics", "Research"],
-      "github": "https://github.com/twahirwa/silver-nanoparticle-sim",
-      "featured": true,
-      "category": "Research"
-    },
-    {
-      "id": "polyglot-nlp",
-      "title": "Polyglot NLP Engine",
-      "description": "Multi-language processing system (EN/FR/SW/ES/LA)",
-      "technologies": ["Python", "NLP", "SpaCy", "ML"],
-      "github": "https://github.com/twahirwa/polyglot-nlp",
-      "featured": true,
-      "category": "NLP"
     }
   ],
-  "githubProfile": "https://github.com/twahirwa"
+  "githubProfile": "https://github.com/twajothi"
 }
