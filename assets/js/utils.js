@@ -1,13 +1,14 @@
 class Utils {
     static updateClock() {
         const now = new Date();
-        const hours = now.getHours().toString().padStart(2, '0');
-        const minutes = now.getMinutes().toString().padStart(2, '0');
-        const days = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
-        const day = days[now.getDay()];
+        const timeString = now.toLocaleTimeString('en-US', { 
+            hour12: false, 
+            hour: '2-digit', 
+            minute: '2-digit' 
+        });
         const clockElement = document.getElementById('clock');
         if (clockElement) {
-            clockElement.textContent = day + ' ' + hours + ':' + minutes;
+            clockElement.textContent = timeString;
         }
     }
 
@@ -41,8 +42,11 @@ class Utils {
 
     static toggleStartMenu() {
         const startMenu = document.getElementById('start-menu');
-        if (startMenu) {
+        const startButton = document.getElementById('start-button');
+        
+        if (startMenu && startButton) {
             startMenu.classList.toggle('active');
+            startButton.classList.toggle('active');
         }
     }
 
