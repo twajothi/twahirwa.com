@@ -51,19 +51,255 @@
     100% { filter: hue-rotate(360deg); }
 }
 
-/* Hidden Terminal Commands */
+/* Matrix Mode Effects */
 .matrix-mode {
     color: #0f0 !important;
     text-shadow: 0 0 5px #0f0;
+    animation: matrix-glow 2s ease-in-out infinite alternate;
 }
 
+@keyframes matrix-glow {
+    0% { 
+        text-shadow: 0 0 5px #0f0;
+        filter: brightness(1);
+    }
+    100% { 
+        text-shadow: 0 0 20px #0f0, 0 0 30px #0f0;
+        filter: brightness(1.2);
+    }
+}
+
+/* Hacker Mode Effects */
 .hacker-mode {
-    animation: flicker 0.1s infinite;
+    animation: hacker-flicker 0.1s infinite;
+    background: linear-gradient(45deg, rgba(0, 255, 0, 0.1), rgba(255, 0, 0, 0.1));
 }
 
-@keyframes flicker {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.8; }
+@keyframes hacker-flicker {
+    0%, 100% { 
+        opacity: 1;
+        filter: contrast(1);
+    }
+    50% { 
+        opacity: 0.8;
+        filter: contrast(1.2);
+    }
+}
+
+/* Terminal Typing Effect */
+.terminal-typing {
+    animation: typing 0.5s steps(20, end);
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+/* Scan Lines Effect */
+.scan-lines::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 255, 255, 0.03) 2px,
+        rgba(0, 255, 255, 0.03) 4px
+    );
+    pointer-events: none;
+    animation: scan-lines 0.1s linear infinite;
+}
+
+@keyframes scan-lines {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(4px); }
+}
+
+/* Terminal Screen Flicker */
+.terminal-flicker {
+    animation: screen-flicker 0.15s infinite linear alternate;
+}
+
+@keyframes screen-flicker {
+    0% { opacity: 1; }
+    100% { opacity: 0.98; }
+}
+
+/* Quantum Effect */
+.quantum-effect {
+    animation: quantum-pulse 3s ease-in-out infinite;
+}
+
+@keyframes quantum-pulse {
+    0%, 100% { 
+        transform: scale(1);
+        filter: hue-rotate(0deg);
+    }
+    25% { 
+        transform: scale(1.02);
+        filter: hue-rotate(90deg);
+    }
+    50% { 
+        transform: scale(1.05);
+        filter: hue-rotate(180deg);
+    }
+    75% { 
+        transform: scale(1.02);
+        filter: hue-rotate(270deg);
+    }
+}
+
+/* Loading Bar Animation */
+.loading-bar-animation {
+    animation: loading-progress 2s ease-in-out infinite;
+}
+
+@keyframes loading-progress {
+    0% { width: 0%; }
+    50% { width: 100%; }
+    100% { width: 0%; }
+}
+
+/* ASCII Art Glow */
+.ascii-glow {
+    animation: ascii-glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes ascii-glow {
+    0% { 
+        text-shadow: 0 0 5px currentColor;
+        filter: brightness(1);
+    }
+    100% { 
+        text-shadow: 0 0 20px currentColor, 0 0 30px currentColor;
+        filter: brightness(1.5);
+    }
+}
+
+/* Terminal Window Shake */
+.terminal-shake {
+    animation: terminal-shake 0.5s ease-in-out;
+}
+
+@keyframes terminal-shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-2px); }
+    20%, 40%, 60%, 80% { transform: translateX(2px); }
+}
+
+/* Neon Glow Effect */
+.neon-glow {
+    animation: neon-glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes neon-glow {
+    0% {
+        text-shadow: 
+            0 0 5px currentColor,
+            0 0 10px currentColor,
+            0 0 15px currentColor;
+    }
+    100% {
+        text-shadow: 
+            0 0 10px currentColor,
+            0 0 20px currentColor,
+            0 0 30px currentColor,
+            0 0 40px currentColor;
+    }
+}
+
+/* Data Stream Effect */
+.data-stream {
+    animation: data-stream 3s linear infinite;
+}
+
+@keyframes data-stream {
+    0% { transform: translateY(100%); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateY(-100%); opacity: 0; }
+}
+
+/* Cyberpunk Grid */
+.cyberpunk-grid::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+    pointer-events: none;
+    animation: grid-move 10s linear infinite;
+}
+
+@keyframes grid-move {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(20px, 20px); }
+}
+
+/* Terminal Boot Sequence */
+.boot-sequence {
+    animation: boot-sequence 0.5s steps(10, end);
+}
+
+@keyframes boot-sequence {
+    0% { opacity: 0; transform: translateY(10px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Holographic Effect */
+.holographic {
+    animation: holographic 4s ease-in-out infinite;
+}
+
+@keyframes holographic {
+    0%, 100% { 
+        filter: hue-rotate(0deg) brightness(1);
+        transform: perspective(1000px) rotateY(0deg);
+    }
+    25% { 
+        filter: hue-rotate(90deg) brightness(1.2);
+        transform: perspective(1000px) rotateY(2deg);
+    }
+    50% { 
+        filter: hue-rotate(180deg) brightness(1.4);
+        transform: perspective(1000px) rotateY(0deg);
+    }
+    75% { 
+        filter: hue-rotate(270deg) brightness(1.2);
+        transform: perspective(1000px) rotateY(-2deg);
+    }
+}
+
+/* Power Level Animation */
+.power-level {
+    animation: power-level 1s ease-in-out infinite;
+}
+
+@keyframes power-level {
+    0% { 
+        transform: scale(1);
+        color: #0f0;
+    }
+    50% { 
+        transform: scale(1.1);
+        color: #ff0;
+    }
+    100% { 
+        transform: scale(1);
+        color: #f00;
+    }
 }
 
 /* Hover and Transition Effects */
@@ -120,18 +356,126 @@
     transition: all 0.3s ease;
 }
 
-.play-icon {
-    transition: transform 0.3s ease;
+/* Terminal Command Animations */
+.terminal-command-success {
+    animation: command-success 0.3s ease-out;
 }
 
-.loading-progress {
-    transition: width 0.3s;
+@keyframes command-success {
+    0% { 
+        background: rgba(0, 255, 0, 0.2);
+        transform: translateX(-5px);
+    }
+    100% { 
+        background: transparent;
+        transform: translateX(0);
+    }
 }
 
-#loading-screen {
-    transition: opacity 0.5s;
+.terminal-command-error {
+    animation: command-error 0.3s ease-out;
 }
 
-a {
-    transition: all 0.3s;
+@keyframes command-error {
+    0% { 
+        background: rgba(255, 0, 0, 0.2);
+        transform: translateX(-5px);
+    }
+    100% { 
+        background: transparent;
+        transform: translateX(0);
+    }
+}
+
+/* System Stats Animation */
+.system-stats {
+    animation: stats-update 1s ease-in-out infinite;
+}
+
+@keyframes stats-update {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+}
+
+/* Quantum Particle Effect */
+.quantum-particle {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: #0ff;
+    border-radius: 50%;
+    animation: quantum-particle 5s linear infinite;
+}
+
+@keyframes quantum-particle {
+    0% { 
+        transform: translate(0, 0) scale(0);
+        opacity: 0;
+    }
+    10% { 
+        opacity: 1;
+        transform: scale(1);
+    }
+    90% { 
+        opacity: 1;
+    }
+    100% { 
+        transform: translate(100vw, 100vh) scale(0);
+        opacity: 0;
+    }
+}
+
+/* Terminal Prompt Pulse */
+.terminal-prompt {
+    animation: prompt-pulse 2s ease-in-out infinite;
+}
+
+@keyframes prompt-pulse {
+    0%, 100% { 
+        text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+    }
+    50% { 
+        text-shadow: 0 0 15px rgba(0, 255, 255, 0.8);
+    }
+}
+
+/* Easter Egg Unlock Animation */
+.easter-egg-unlock {
+    animation: easter-egg-unlock 2s ease-out;
+}
+
+@keyframes easter-egg-unlock {
+    0% { 
+        transform: scale(0) rotate(0deg);
+        opacity: 0;
+    }
+    50% { 
+        transform: scale(1.2) rotate(180deg);
+        opacity: 1;
+    }
+    100% { 
+        transform: scale(1) rotate(360deg);
+        opacity: 1;
+    }
+}
+
+/* Terminal Window Glow */
+.terminal-window-glow {
+    box-shadow: 
+        0 0 20px rgba(0, 255, 255, 0.4),
+        inset 0 0 20px rgba(0, 255, 255, 0.1);
+    animation: window-glow 3s ease-in-out infinite alternate;
+}
+
+@keyframes window-glow {
+    0% { 
+        box-shadow: 
+            0 0 20px rgba(0, 255, 255, 0.4),
+            inset 0 0 20px rgba(0, 255, 255, 0.1);
+    }
+    100% { 
+        box-shadow: 
+            0 0 40px rgba(0, 255, 255, 0.6),
+            inset 0 0 40px rgba(0, 255, 255, 0.2);
+    }
 }
