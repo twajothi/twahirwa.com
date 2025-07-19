@@ -137,6 +137,25 @@ class TwahirwaOS {
                         </div>
                     </div>
                     
+                    <div class="albums-section" style="margin-bottom: 25px;">
+                        <h4 style="color: #ff0; margin-bottom: 15px; text-align: center; font-size: 13px;">💿 Albums</h4>
+                        <div class="albums-list" style="border: 1px solid #ff0; border-radius: 5px; padding: 10px;">
+                            ${music.albums?.map(album => `
+                                <div class="album-item" style="display: flex; justify-content: space-between; align-items: center; padding: 10px; border: 1px solid #333; border-radius: 5px; margin-bottom: 10px; cursor: pointer; transition: background 0.3s;" onclick="window.open('${album.spotifyUrl}', '_blank')" onmouseover="this.style.background='rgba(255,255,0,0.1)'" onmouseout="this.style.background='transparent'">
+                                    <div>
+                                        <strong style="color: #ff0; font-size: 14px;">${album.title}</strong>
+                                        <span style="color: #888; margin-left: 10px; font-size: 11px;">(${album.year})</span>
+                                        <br>
+                                        <small style="color: #666; font-size: 10px; line-height: 1.3;">${album.description}</small>
+                                        <br>
+                                        <small style="color: #888; font-size: 10px;">${album.trackCount} tracks • ${album.duration}</small>
+                                    </div>
+                                    <span style="color: #ff0; font-size: 18px;">🎵</span>
+                                </div>
+                            `).join('') || '<div style="text-align: center; color: #666; font-style: italic;">No albums available</div>'}
+                        </div>
+                    </div>
+                    
                     <div class="music-platforms" style="display: flex; justify-content: center; gap: 20px; margin-bottom: 20px;">
                         ${music.platforms?.spotify ? `<a href="${music.platforms.spotify}" target="_blank" style="color: #0f0; text-decoration: none; font-size: 12px;">🎵 Spotify →</a>` : ''}
                         ${music.platforms?.youtube ? `<a href="${music.platforms.youtube}" target="_blank" style="color: #f00; text-decoration: none; font-size: 12px;">📺 YouTube →</a>` : ''}

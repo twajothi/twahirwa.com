@@ -25,20 +25,7 @@ class Utils {
         }
     }
 
-    static activateKonamiMode() {
-        document.body.classList.add('konami-activated');
-        if (window.windowManager) {
-            window.windowManager.openWindow('secret');
-        }
-        
-        const secretIcon = document.getElementById('secret-icon');
-        if (secretIcon) {
-            const label = secretIcon.querySelector('.icon-label');
-            const image = secretIcon.querySelector('.icon-image');
-            if (label) label.textContent = 'UNLOCKED!';
-            if (image) image.textContent = '🎉';
-        }
-    }
+
 
     static toggleStartMenu() {
         const startMenu = document.getElementById('start-menu');
@@ -68,7 +55,6 @@ window.activeWindow = null;
 window.isDragging = false;
 window.dragOffset = { x: 0, y: 0 };
 window.zIndex = 100;
-window.konamiCode = [];
-window.konamiSequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+
 
 window.Utils = Utils;

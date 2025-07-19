@@ -7,9 +7,7 @@ class Terminal {
         this.currentDir = '/home/twahirwa';
         this.systemMode = 'normal';
         this.hackLevel = 0;
-        this.konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'KeyB', 'KeyA'];
-        this.konamiProgress = 0;
-        this.secretUnlocked = false;
+
         this.matrixMode = false;
         this.typewriterActive = false;
         this.fileSystem = this.initFileSystem();
@@ -18,7 +16,6 @@ class Terminal {
     init() {
         this.loadAllData().then(() => {
             this.bindTerminalInput();
-            this.bindKonamiCode();
             this.startSystemMonitor();
         });
     }
@@ -38,8 +35,7 @@ class Terminal {
                         'documents': {
                             'resume.pdf': 'Professional resume and CV',
                             'research.txt': 'Published research papers',
-                            'ideas.txt': 'Random thoughts and project ideas',
-                            'secrets.enc': 'Encrypted file - access denied'
+                            'ideas.txt': 'Random thoughts and project ideas'
                         },
                         'music': {
                             'beats': {
@@ -161,31 +157,7 @@ class Terminal {
         }
     }
 
-    bindKonamiCode() {
-        let konamiSequence = [];
-        document.addEventListener('keydown', (e) => {
-            konamiSequence.push(e.code);
-            if (konamiSequence.length > this.konamiCode.length) {
-                konamiSequence.shift();
-            }
-            
-            if (JSON.stringify(konamiSequence) === JSON.stringify(this.konamiCode)) {
-                this.secretUnlocked = true;
-                this.unlockSecret();
-            }
-        });
-    }
 
-    unlockSecret() {
-        this.outputLine('<span style="color: #f0f;">🎉 KONAMI CODE ACTIVATED! 🎉</span>');
-        this.outputLine('<span style="color: #ff0;">Secret developer mode unlocked!</span>');
-        this.outputLine('<span style="color: #0ff;">Try: godmode, noclip, showfps, debug</span>');
-        document.body.classList.add('konami-activated');
-        
-        if (window.windowManager) {
-            window.windowManager.openWindow('secret');
-        }
-    }
 
     autoComplete(input) {
         const partial = input.value.toLowerCase();
@@ -318,7 +290,7 @@ class Terminal {
                     <span style="color: #0f0;">Fun & Games:</span><br>
                     &nbsp;&nbsp;matrix, rain, hack, cowsay, figlet, lolcat<br>
                     <span style="color: #0f0;">Easter Eggs:</span><br>
-                    &nbsp;&nbsp;konami, secret, quantum, coffee, sudo<br>
+                    &nbsp;&nbsp;konami, quantum, coffee, sudo<br>
                     <span style="color: #0f0;">System:</span><br>
                     &nbsp;&nbsp;ps, top, kill, reboot, shutdown, clear, exit<br>
                     <span style="color: #888;">Tip: Use Tab for autocompletion, ↑/↓ for history</span>`;
@@ -590,10 +562,7 @@ class Terminal {
                     files.push('<span style="color: #555;">.bashrc</span>');
                     files.push('<span style="color: #555;">.profile</span>');
                     files.push('<span style="color: #555;">.ssh/</span>');
-                    files.push('<span style="color: #f00;">.secret</span>');
                 }
-                
-                files.push('<span style="color: #f0f;">secret.lock</span>');
                 
                 if (longFormat) {
                     let output = '<span style="color: #0ff;">total ' + files.length + '</span><br>';
@@ -615,8 +584,6 @@ class Terminal {
                 
                 const file = args[0];
                 switch (file) {
-                    case 'secret.lock':
-                        return '<span style="color: #f0f;">Nice try! But you need the right key... 🔐</span>';
                     case 'about.exe':
                         return this.commands['about']();
                     case 'projects.py':
@@ -625,11 +592,6 @@ class Terminal {
                         return this.commands['skills']();
                     case '.bashrc':
                         return '# ~/.bashrc\nexport PS1="\\u@\\h:\\w\\$ "\nalias ll="ls -la"\nalias la="ls -A"\nalias l="ls -CF"';
-                    case '.secret':
-                        if (this.secretUnlocked) {
-                            return '<span style="color: #0f0;">You found the secret! The answer is 42.</span>';
-                        }
-                        return '<span style="color: #f00;">Permission denied</span>';
                     default:
                         return `cat: ${file}: No such file or directory`;
                 }
@@ -643,12 +605,7 @@ class Terminal {
                 const searchTerm = args[0];
                 const results = [];
                 
-                if (searchTerm.includes('secret')) {
-                    results.push('./secret.lock');
-                    if (this.secretUnlocked) {
-                        results.push('./home/twahirwa/.secret');
-                    }
-                }
+
                 
                 if (searchTerm.includes('music')) {
                     results.push('./dj_mode.mp3');
@@ -671,7 +628,6 @@ class Terminal {
 ├── <span style="color: #0f0;">skills.json</span><br>
 ├── <span style="color: #0ff;">contact.msg</span><br>
 ├── <span style="color: #f0f;">research.ml</span><br>
-├── <span style="color: #f0f;">secret.lock</span><br>
 └── <span style="color: #888;">social/</span><br>
     ├── <span style="color: #888;">github.exe</span><br>
     ├── <span style="color: #888;">linkedin.exe</span><br>
@@ -684,8 +640,7 @@ class Terminal {
 4.2K    ./projects/<br>
 2.1K    ./music/<br>
 1.8K    ./documents/<br>
-512B    ./secrets/<br>
-<span style="color: #0ff;">8.6K    total</span>`;
+<span style="color: #0ff;">8.1K    total</span>`;
             },
 
             'ping': (args) => {
@@ -912,13 +867,7 @@ Address: ${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}.$
                 }
             },
 
-            'secret': () => {
-                if (this.secretUnlocked) {
-                    return '<span style="color: #0f0;">The secret is revealed: 42 is the answer to life, the universe, and everything!</span>';
-                } else {
-                    return '<span style="color: #f00;">Access denied. Find the secret key first!</span>';
-                }
-            },
+
 
             'reboot': () => {
                 const output = document.getElementById('terminal-output');
@@ -968,45 +917,7 @@ Address: ${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}.$
                 return 'ASYNC';
             },
 
-            // Secret commands for konami code
-            'godmode': () => {
-                if (this.secretUnlocked) {
-                    return '<span style="color: #f0f;">GOD MODE ACTIVATED! You are now invincible in this digital realm.</span>';
-                } else {
-                    return '<span style="color: #f00;">Access denied. Unlock secret mode first!</span>';
-                }
-            },
 
-            'noclip': () => {
-                if (this.secretUnlocked) {
-                    return '<span style="color: #f0f;">NOCLIP ENABLED! You can now walk through digital walls.</span>';
-                } else {
-                    return '<span style="color: #f00;">Access denied. Unlock secret mode first!</span>';
-                }
-            },
-
-            'showfps': () => {
-                if (this.secretUnlocked) {
-                    return '<span style="color: #f0f;">FPS Display: 60 FPS (Quantum-enhanced)</span>';
-                } else {
-                    return '<span style="color: #f00;">Access denied. Unlock secret mode first!</span>';
-                }
-            },
-
-            'debug': () => {
-                if (this.secretUnlocked) {
-                    return `<span style="color: #f0f;">DEBUG INFO:</span><br>
-Version: TWAHIRWA_OS v2.0<br>
-Quantum State: Active<br>
-Matrix Level: ${this.matrixMode ? 'Active' : 'Inactive'}<br>
-Hack Level: ${this.hackLevel}<br>
-Secret Mode: ${this.secretUnlocked ? 'Unlocked' : 'Locked'}<br>
-Commands Executed: ${this.history.length}<br>
-Current Directory: ${this.currentDir}`;
-                } else {
-                    return '<span style="color: #f00;">Access denied. Unlock secret mode first!</span>';
-                }
-            }
         };
     }
 

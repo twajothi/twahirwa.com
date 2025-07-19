@@ -17,6 +17,17 @@
       "description": "Electric Dance in Kigali"
     }
   ],
+  "albums": [
+    {
+      "id": "east-amapiano-odyssey",
+      "title": "East Amapiano Odyssey",
+      "year": "2025",
+      "duration": "49 min 51 sec",
+      "trackCount": 12,
+      "spotifyUrl": "https://open.spotify.com/album/15YNntpZFRmh5wqQnqkVso?si=xmT8i5Y5SWKJsI4hH8dJHg",
+      "description": "A musical journey through East African Amapiano sounds"
+    }
+  ],
   "platforms": {
     "spotify": "https://open.spotify.com/artist/1zMYW2mNBr1VFO6iuOh7F9?si=y9FUp4dLRBWqMH3N_RpESA",
     "youtube": "https://www.youtube.com/@tjtmusic5833"
