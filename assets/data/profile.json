@@ -1,14 +1,14 @@
 {
     "name": "Thibault J. Twahirwa",
-    "title": "Market‑Data & GenAI Strategist • Quant Analyst • Data‑Driven Music Maker",
+    "title": "Finance & GenAI Strategist • Quant Analyst • Data‑Driven Music Maker",
     "email": "thibault.twahirwa@gmail.com",
     "location": "New York City",
-    "origin": "Rwandan‑American 🇷🇼🇺🇸",
+    "origin": "Rwandan 🇷🇼🇺🇸",
     "languages": ["English", "French", "Swahili", "Kinyarwanda"],
     "website": {
       "domain": "https://twahirwa.com",
-      "title": "Thibault Twahirwa | Market‑Data × GenAI × Quantitative Analytics",
-      "description": "Physics‑trained quant turning market‑data chaos into governed, AI‑powered insight engines—and datasets into music.",
+      "title": "Thibault Twahirwa | Finance × GenAI × Quantitative Analytics",
+      "description": "Creative and curious nerd with a test for music",
       "keywords": [
         "Thibault Twahirwa",
         "Market Data Strategy",
@@ -17,12 +17,12 @@
         "LLM Governance",
         "Quant Analytics",
         "Python",
-        "Snowflake",
+        "Music",
         "NYC Tech"
       ],
       "author": "Thibault J. Twahirwa",
-      "ogTitle": "Market‑Data Meets Memory‑Augmented AI",
-      "ogDescription": "Cutting costs with LLMs, embedding entitlements into vector stores, and turning data into beats."
+      "ogTitle": "Finance & Data Meets Memory‑Augmented AI",
+      "ogDescription": "Looking to build cool things with data and AI."
     },
     "contact": {
       "emailSubject": "fintech ideas ?? — Let’s Connect",
@@ -49,22 +49,6 @@
       "TensorFlow", "PyTorch",
       "Weaviate", "PGVector"
     ],
-    "quantAchievements": [
-      "18% YoY market‑data cost reduction via license‑usage models",
-      "72M entitlement rows embedded for sub‑second semantic search",
-      "60% faster contract reviews with GPT‑4o redline agent"
-    ],
-    "currentFocus": [
-      "Memory‑augmented LLM copilots for data stewards",
-      "Long‑context inference on full‑day order books",
-      "Algorithmic electronic music driven by embeddings"
-    ],
-    "sideProjects": [
-      "Airbnb smart‑lock forecasting",
-      "Toddler counting sound‑packs powered by Tiny‑LLMs"
-    ],
     "funFacts": [
-      "DJ who maps cosine similarity to chord progressions",
-      "Can greet you in four languages"
-    ]
+      "Dad of two boys and DJ .. very curious and I do not belieieve in impossiblility"    ]
   }
