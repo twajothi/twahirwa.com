@@ -1,11 +1,30 @@
 /* Responsive Design - Mobile Styles */
 
+/* Performance optimizations for mobile */
 @media (max-width: 768px) {
+    /* Optimize performance */
+    * {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+    }
+
+    /* Enable hardware acceleration for smooth scrolling */
+    body {
+        -webkit-overflow-scrolling: touch;
+        overflow-scrolling: touch;
+    }
+
     .window {
         min-width: 90%;
         min-height: 80%;
         left: 5% !important;
         top: 5% !important;
+        /* Optimize window rendering */
+        will-change: transform;
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
     }
     
     .desktop-icon {

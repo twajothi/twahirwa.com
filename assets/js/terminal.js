@@ -128,6 +128,15 @@ class Terminal {
     bindTerminalInput() {
         const terminalInput = document.getElementById('terminal-input');
         if (terminalInput) {
+            // Mobile-specific optimizations
+            if (window.mobileOptimizer && window.mobileOptimizer.isMobileDevice()) {
+                terminalInput.setAttribute('autocomplete', 'off');
+                terminalInput.setAttribute('autocorrect', 'off');
+                terminalInput.setAttribute('autocapitalize', 'off');
+                terminalInput.setAttribute('spellcheck', 'false');
+                terminalInput.style.fontSize = '16px'; // Prevent zoom on iOS
+            }
+
             terminalInput.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter') {
                     this.processCommand(terminalInput.value);
