@@ -103,82 +103,161 @@ class TwahirwaOS {
             const windowContent = musicWindow.querySelector('.window-content');
             if (!windowContent) return;
             
-            // Create new content for music window
+            // Create new content for music window - Albums First!
             const musicContent = `
                 <div class="music-player">
-                    <div class="music-header">
-                        <h3 style="color: #0ff; text-align: center; margin-bottom: 15px;">🎵 ${music.artistName || 'T-SquareJ'} - DJ Mode</h3>
-                        <p style="text-align: center; color: #888; font-size: 12px; margin-bottom: 20px;">${music.musicStyle || 'Data-driven Music'}</p>
+                    <div class="music-header" style="text-align: center; margin-bottom: 25px;">
+                        <h3 style="color: #0ff; margin-bottom: 10px; font-size: 20px;">🎵 ${music.artistName || 'T-SquareJ'}</h3>
+                        <p style="color: #888; font-size: 11px; line-height: 1.4; max-width: 90%; margin: 0 auto;">${music.musicStyle || 'Data-driven Music'}</p>
                     </div>
                     
-                    <div class="genres-section" style="margin-bottom: 20px; text-align: center;">
-                        <h4 style="color: #f0f; margin-bottom: 10px; font-size: 13px;">🎶 Genres</h4>
-                        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 6px;">
-                            ${music.genres?.map(genre => `
-                                <span style="background: rgba(255, 0, 255, 0.1); color: #f0f; padding: 3px 8px; border-radius: 3px; font-size: 10px;">${genre}</span>
-                            `).join('') || ''}
-                        </div>
-                    </div>
-                    
-                    <div class="featured-tracks" style="margin-bottom: 25px;">
-                        <h4 style="color: #0f0; margin-bottom: 15px; text-align: center; font-size: 13px;">🎼 Featured Tracks</h4>
-                        <div class="track-list" style="max-height: 200px; overflow-y: auto; border: 1px solid #0ff; border-radius: 5px; padding: 10px;">
-                            ${music.featuredTracks ? music.featuredTracks.map(track => `
-                                <div class="track-item" style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid #333;">
-                                    <div>
-                                        <strong style="color: #0ff; font-size: 12px;">${track.title}</strong>
-                                        <span style="color: #888; margin-left: 10px; font-size: 11px;">${track.duration}</span>
-                                        <br>
-                                        <small style="color: #666; font-size: 10px; line-height: 1.3;">${track.description}</small>
-                                    </div>
-                                    <a href="${track.spotifyUrl}" target="_blank" style="color: #0f0; text-decoration: none; font-size: 11px; margin-left: 10px;">🎵 Play →</a>
-                                </div>
-                            `).join('') : '<div style="text-align: center; color: #666; font-style: italic;">No tracks available</div>'}
-                        </div>
-                    </div>
-                    
-                    <div class="albums-section" style="margin-bottom: 25px;">
-                        <h4 style="color: #ff0; margin-bottom: 15px; text-align: center; font-size: 13px;">💿 Albums</h4>
-                        <div class="albums-list" style="border: 1px solid #ff0; border-radius: 5px; padding: 10px;">
+                    <!-- ALBUMS SECTION - TOP PRIORITY -->
+                    <div class="albums-section" style="margin-bottom: 30px;">
+                        <h4 style="color: #ff0; margin-bottom: 15px; text-align: center; font-size: 16px; text-transform: uppercase; letter-spacing: 1px;">💿 Albums</h4>
+                        <div class="albums-list">
                             ${music.albums?.map(album => `
-                                <div class="album-item" style="display: flex; justify-content: space-between; align-items: center; padding: 10px; border: 1px solid #333; border-radius: 5px; margin-bottom: 10px; cursor: pointer; transition: background 0.3s;" onclick="window.open('${album.spotifyUrl}', '_blank')" onmouseover="this.style.background='rgba(255,255,0,0.1)'" onmouseout="this.style.background='transparent'">
-                                    <div>
-                                        <strong style="color: #ff0; font-size: 14px;">${album.title}</strong>
-                                        <span style="color: #888; margin-left: 10px; font-size: 11px;">(${album.year})</span>
-                                        <br>
-                                        <small style="color: #666; font-size: 10px; line-height: 1.3;">${album.description}</small>
-                                        <br>
-                                        <small style="color: #888; font-size: 10px;">${album.trackCount} tracks • ${album.duration}</small>
+                                <div class="album-item" style="
+                                    background: linear-gradient(135deg, rgba(255,255,0,0.05) 0%, rgba(255,255,0,0.02) 100%);
+                                    border: 2px solid #ff0;
+                                    border-radius: 12px;
+                                    padding: 16px;
+                                    margin-bottom: 12px;
+                                    cursor: pointer;
+                                    transition: all 0.3s ease;
+                                    position: relative;
+                                    overflow: hidden;
+                                " 
+                                onclick="window.open('${album.spotifyUrl}', '_blank')" 
+                                onmouseover="this.style.background='rgba(255,255,0,0.15)'; this.style.transform='translateY(-3px)'; this.style.boxShadow='0 6px 20px rgba(255,255,0,0.3)'" 
+                                onmouseout="this.style.background='linear-gradient(135deg, rgba(255,255,0,0.05) 0%, rgba(255,255,0,0.02) 100%)'; this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                                    <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                                        <div style="flex: 1;">
+                                            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                                                <span style="font-size: 32px;">💿</span>
+                                                <div>
+                                                    <div style="color: #ff0; font-size: 16px; font-weight: bold; margin-bottom: 4px;">${album.title}</div>
+                                                    <div style="color: #888; font-size: 11px;">${album.year} • ${album.trackCount} tracks • ${album.duration}</div>
+                                                </div>
+                                            </div>
+                                            <p style="color: #ccc; font-size: 12px; line-height: 1.5; margin-top: 10px;">${album.description}</p>
+                                        </div>
+                                        <div style="display: flex; align-items: center; gap: 8px; margin-left: 15px;">
+                                            <span style="color: #0f0; font-size: 24px; animation: pulse 2s infinite;">▶</span>
+                                        </div>
                                     </div>
-                                    <span style="color: #ff0; font-size: 18px;">🎵</span>
+                                    <div style="position: absolute; top: 10px; right: 10px; background: rgba(0,255,0,0.2); color: #0f0; padding: 4px 10px; border-radius: 12px; font-size: 9px; font-weight: bold; text-transform: uppercase;">
+                                        Listen Now
+                                    </div>
                                 </div>
-                            `).join('') || '<div style="text-align: center; color: #666; font-style: italic;">No albums available</div>'}
+                            `).join('') || '<div style="text-align: center; color: #666; font-style: italic; padding: 20px;">No albums available yet...</div>'}
                         </div>
                     </div>
                     
-                    <div class="music-platforms" style="display: flex; justify-content: center; gap: 20px; margin-bottom: 20px;">
-                        ${music.platforms?.spotify ? `<a href="${music.platforms.spotify}" target="_blank" style="color: #0f0; text-decoration: none; font-size: 12px;">🎵 Spotify →</a>` : ''}
-                        ${music.platforms?.youtube ? `<a href="${music.platforms.youtube}" target="_blank" style="color: #f00; text-decoration: none; font-size: 12px;">📺 YouTube →</a>` : ''}
-                    </div>
-                    
-                    <div class="upcoming-releases" style="margin-bottom: 15px;">
-                        <h4 style="color: #ff0; margin-bottom: 10px; text-align: center; font-size: 12px;">🚀 Coming Soon</h4>
-                        <div style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;">
-                            ${music.upcomingReleases ? music.upcomingReleases.map(release => `
-                                <span style="background: rgba(255, 255, 0, 0.1); color: #ff0; padding: 4px 8px; border-radius: 3px; font-size: 10px;">${release}</span>
-                            `).join('') : ''}
+                    <!-- FEATURED TRACKS -->
+                    <div class="featured-tracks" style="margin-bottom: 25px;">
+                        <h4 style="color: #0ff; margin-bottom: 12px; text-align: center; font-size: 14px;">🎼 Featured Tracks</h4>
+                        <div class="track-list" style="max-height: 180px; overflow-y: auto; border: 1px solid #0ff; border-radius: 8px; padding: 10px; background: rgba(0,255,255,0.02);">
+                            ${music.featuredTracks ? music.featuredTracks.map((track, index) => `
+                                <div class="track-item" style="
+                                    display: flex;
+                                    justify-content: space-between;
+                                    align-items: center;
+                                    padding: 10px 8px;
+                                    border-bottom: ${index < music.featuredTracks.length - 1 ? '1px solid #333' : 'none'};
+                                    transition: background 0.2s;
+                                "
+                                onmouseover="this.style.background='rgba(0,255,255,0.1)'"
+                                onmouseout="this.style.background='transparent'">
+                                    <div style="flex: 1;">
+                                        <div style="display: flex; align-items: center; gap: 8px;">
+                                            <span style="color: #888; font-size: 11px; min-width: 20px;">${index + 1}.</span>
+                                            <div>
+                                                <strong style="color: #0ff; font-size: 12px; display: block;">${track.title}</strong>
+                                                <small style="color: #666; font-size: 10px;">${track.description}</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="display: flex; align-items: center; gap: 12px; margin-left: 10px;">
+                                        <span style="color: #888; font-size: 11px; white-space: nowrap;">${track.duration}</span>
+                                        <a href="${track.spotifyUrl}" target="_blank" style="color: #0f0; text-decoration: none; font-size: 18px; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">▶</a>
+                                    </div>
+                                </div>
+                            `).join('') : '<div style="text-align: center; color: #666; font-style: italic; padding: 15px;">No tracks available</div>'}
                         </div>
                     </div>
                     
-                    <div class="waveform" style="display: flex; align-items: end; justify-content: center; height: 60px; gap: 2px; margin-top: 20px;">
-                        <div class="waveform-bar" style="width: 4px; background: #0ff; height: 20%; animation: pulse 2s infinite ease-in-out;"></div>
-                        <div class="waveform-bar" style="width: 4px; background: #0ff; height: 40%; animation: pulse 2s infinite ease-in-out 0.2s;"></div>
-                        <div class="waveform-bar" style="width: 4px; background: #0ff; height: 60%; animation: pulse 2s infinite ease-in-out 0.4s;"></div>
-                        <div class="waveform-bar" style="width: 4px; background: #0ff; height: 80%; animation: pulse 2s infinite ease-in-out 0.6s;"></div>
-                        <div class="waveform-bar" style="width: 4px; background: #0ff; height: 100%; animation: pulse 2s infinite ease-in-out 0.8s;"></div>
-                        <div class="waveform-bar" style="width: 4px; background: #0ff; height: 70%; animation: pulse 2s infinite ease-in-out 1s;"></div>
-                        <div class="waveform-bar" style="width: 4px; background: #0ff; height: 50%; animation: pulse 2s infinite ease-in-out 1.2s;"></div>
-                        <div class="waveform-bar" style="width: 4px; background: #0ff; height: 30%; animation: pulse 2s infinite ease-in-out 1.4s;"></div>
+                    <!-- PLATFORMS & GENRES -->
+                    <div style="display: flex; gap: 20px; margin-bottom: 20px; flex-wrap: wrap;">
+                        <!-- Streaming Platforms -->
+                        <div style="flex: 1; min-width: 200px;">
+                            <h4 style="color: #0f0; margin-bottom: 10px; font-size: 12px; text-align: center;">🎧 Listen On</h4>
+                            <div style="display: flex; flex-direction: column; gap: 8px;">
+                                ${music.platforms?.spotify ? `
+                                    <a href="${music.platforms.spotify}" target="_blank" style="
+                                        background: rgba(0,255,0,0.1);
+                                        border: 1px solid #0f0;
+                                        color: #0f0;
+                                        text-decoration: none;
+                                        padding: 10px;
+                                        border-radius: 8px;
+                                        font-size: 12px;
+                                        text-align: center;
+                                        transition: all 0.2s;
+                                    " onmouseover="this.style.background='rgba(0,255,0,0.2)'; this.style.transform='scale(1.02)'" onmouseout="this.style.background='rgba(0,255,0,0.1)'; this.style.transform='scale(1)'">
+                                        🎵 Spotify
+                                    </a>
+                                ` : ''}
+                                ${music.platforms?.youtube ? `
+                                    <a href="${music.platforms.youtube}" target="_blank" style="
+                                        background: rgba(255,0,0,0.1);
+                                        border: 1px solid #f00;
+                                        color: #f00;
+                                        text-decoration: none;
+                                        padding: 10px;
+                                        border-radius: 8px;
+                                        font-size: 12px;
+                                        text-align: center;
+                                        transition: all 0.2s;
+                                    " onmouseover="this.style.background='rgba(255,0,0,0.2)'; this.style.transform='scale(1.02)'" onmouseout="this.style.background='rgba(255,0,0,0.1)'; this.style.transform='scale(1)'">
+                                        📺 YouTube
+                                    </a>
+                                ` : ''}
+                            </div>
+                        </div>
+                        
+                        <!-- Genres -->
+                        <div style="flex: 1; min-width: 200px;">
+                            <h4 style="color: #f0f; margin-bottom: 10px; font-size: 12px; text-align: center;">🎶 Genres</h4>
+                            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 6px;">
+                                ${music.genres?.map(genre => `
+                                    <span style="background: rgba(255, 0, 255, 0.1); border: 1px solid #f0f; color: #f0f; padding: 4px 10px; border-radius: 12px; font-size: 10px; white-space: nowrap;">${genre}</span>
+                                `).join('') || ''}
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- UPCOMING RELEASES -->
+                    ${music.upcomingReleases && music.upcomingReleases.length > 0 && music.upcomingReleases[0] !== 'Loading...' ? `
+                        <div class="upcoming-releases" style="margin-bottom: 20px; text-align: center;">
+                            <h4 style="color: #ff0; margin-bottom: 10px; font-size: 12px;">🚀 Coming Soon</h4>
+                            <div style="display: flex; flex-wrap: wrap; gap: 6px; justify-content: center;">
+                                ${music.upcomingReleases.map(release => `
+                                    <span style="background: rgba(255, 255, 0, 0.1); border: 1px solid #ff0; color: #ff0; padding: 4px 10px; border-radius: 12px; font-size: 10px;">${release}</span>
+                                `).join('')}
+                            </div>
+                        </div>
+                    ` : ''}
+                    
+                    <!-- WAVEFORM ANIMATION -->
+                    <div class="waveform" style="display: flex; align-items: flex-end; justify-content: center; height: 50px; gap: 3px; margin-top: 20px; opacity: 0.6;">
+                        <div class="waveform-bar" style="width: 5px; background: linear-gradient(to top, #0ff, #00f); height: 20%; animation: pulse 1.5s infinite ease-in-out; border-radius: 3px;"></div>
+                        <div class="waveform-bar" style="width: 5px; background: linear-gradient(to top, #0ff, #00f); height: 40%; animation: pulse 1.5s infinite ease-in-out 0.2s; border-radius: 3px;"></div>
+                        <div class="waveform-bar" style="width: 5px; background: linear-gradient(to top, #0ff, #00f); height: 60%; animation: pulse 1.5s infinite ease-in-out 0.4s; border-radius: 3px;"></div>
+                        <div class="waveform-bar" style="width: 5px; background: linear-gradient(to top, #0ff, #00f); height: 80%; animation: pulse 1.5s infinite ease-in-out 0.6s; border-radius: 3px;"></div>
+                        <div class="waveform-bar" style="width: 5px; background: linear-gradient(to top, #0ff, #00f); height: 100%; animation: pulse 1.5s infinite ease-in-out 0.8s; border-radius: 3px;"></div>
+                        <div class="waveform-bar" style="width: 5px; background: linear-gradient(to top, #0ff, #00f); height: 70%; animation: pulse 1.5s infinite ease-in-out 1s; border-radius: 3px;"></div>
+                        <div class="waveform-bar" style="width: 5px; background: linear-gradient(to top, #0ff, #00f); height: 50%; animation: pulse 1.5s infinite ease-in-out 1.2s; border-radius: 3px;"></div>
+                        <div class="waveform-bar" style="width: 5px; background: linear-gradient(to top, #0ff, #00f); height: 30%; animation: pulse 1.5s infinite ease-in-out 1.4s; border-radius: 3px;"></div>
                     </div>
                 </div>
             `;

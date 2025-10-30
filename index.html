@@ -3,8 +3,18 @@
 <head>
     <!-- Essential Meta Tags -->
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <!-- iOS Safari Optimizations -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=no">
+    
+    <!-- Mobile Optimizations -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="MobileOptimized" content="width">
 
     <!-- SEO Meta Tags -->
     <title>Thibault Twahirwa | Data Scientist × Music Producer × Quantum Researcher</title>
@@ -51,6 +61,7 @@
     <link rel="stylesheet" href="assets/css/animations.css">
     <link rel="stylesheet" href="assets/css/responsive.css">
     <link rel="stylesheet" href="assets/css/mobile.css">
+    <link rel="stylesheet" href="assets/css/mobile-enhanced.css">
 
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
@@ -100,55 +111,57 @@
         <!-- Matrix Rain Canvas -->
         <canvas id="matrix-rain"></canvas>
         
-        <!-- Desktop Icons -->
-        <div class="desktop-icon" data-window="about" style="top: 20px; left: 20px;">
-            <div class="icon-image">👤</div>
-            <div class="icon-label">about.exe</div>
-        </div>
-        
-        <div class="desktop-icon" data-window="projects" style="top: 20px; left: 160px;">
-            <div class="icon-image">💻</div>
-            <div class="icon-label">projects.py</div>
-        </div>
-        
-        <div class="desktop-icon" data-window="music" style="top: 20px; left: 300px;">
-            <div class="icon-image">🎵</div>
-            <div class="icon-label">dj_mode.mp3</div>
-        </div>
-        
-        <div class="desktop-icon" data-window="terminal" style="top: 20px; left: 440px;">
-            <div class="icon-image">$</div>
-            <div class="icon-label">terminal.sh</div>
-        </div>
-        
-        <div class="desktop-icon" data-window="contact" style="top: 180px; left: 20px;">
-            <div class="icon-image">📧</div>
-            <div class="icon-label">contact.msg</div>
-        </div>
-        
-        <div class="desktop-icon" data-window="research" style="top: 180px; left: 160px;">
-            <div class="icon-image">🔬</div>
-            <div class="icon-label">research.ml</div>
-        </div>
-        
-        <div class="desktop-icon" data-window="youtube" style="top: 180px; left: 300px;">
-            <div class="icon-image">📺</div>
-            <div class="icon-label">youtube.exe</div>
-        </div>
-        
-        <div class="desktop-icon" data-window="instagram" style="top: 180px; left: 440px;">
-            <div class="icon-image">📸</div>
-            <div class="icon-label">instagram.exe</div>
-        </div>
-        
-        <div class="desktop-icon" data-window="tiktok" style="top: 340px; left: 20px;">
-            <div class="icon-image">🎬</div>
-            <div class="icon-label">tiktok.exe</div>
-        </div>
-        
-        <div class="desktop-icon" data-window="linkedin" style="top: 340px; left: 160px;">
-            <div class="icon-image">💼</div>
-            <div class="icon-label">linkedin.exe</div>
+        <!-- Desktop Icons Container -->
+        <div id="desktop-icons-container">
+            <div class="desktop-icon" data-window="about" style="top: 20px; left: 20px;">
+                <div class="icon-image">👤</div>
+                <div class="icon-label">about.exe</div>
+            </div>
+            
+            <div class="desktop-icon" data-window="projects" style="top: 20px; left: 160px;">
+                <div class="icon-image">💻</div>
+                <div class="icon-label">projects.py</div>
+            </div>
+            
+            <div class="desktop-icon" data-window="music" style="top: 20px; left: 300px;">
+                <div class="icon-image">🎵</div>
+                <div class="icon-label">dj_mode.mp3</div>
+            </div>
+            
+            <div class="desktop-icon" data-window="terminal" style="top: 20px; left: 440px;">
+                <div class="icon-image">$</div>
+                <div class="icon-label">terminal.sh</div>
+            </div>
+            
+            <div class="desktop-icon" data-window="contact" style="top: 180px; left: 20px;">
+                <div class="icon-image">📧</div>
+                <div class="icon-label">contact.msg</div>
+            </div>
+            
+            <div class="desktop-icon" data-window="research" style="top: 180px; left: 160px;">
+                <div class="icon-image">🔬</div>
+                <div class="icon-label">research.ml</div>
+            </div>
+            
+            <div class="desktop-icon" data-window="youtube" style="top: 180px; left: 300px;">
+                <div class="icon-image">📺</div>
+                <div class="icon-label">youtube.exe</div>
+            </div>
+            
+            <div class="desktop-icon" data-window="instagram" style="top: 180px; left: 440px;">
+                <div class="icon-image">📸</div>
+                <div class="icon-label">instagram.exe</div>
+            </div>
+            
+            <div class="desktop-icon" data-window="tiktok" style="top: 340px; left: 20px;">
+                <div class="icon-image">🎬</div>
+                <div class="icon-label">tiktok.exe</div>
+            </div>
+            
+            <div class="desktop-icon" data-window="linkedin" style="top: 340px; left: 160px;">
+                <div class="icon-image">💼</div>
+                <div class="icon-label">linkedin.exe</div>
+            </div>
         </div>
         
 

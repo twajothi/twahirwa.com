@@ -46,6 +46,14 @@ body {
     opacity: 0.15;
 }
 
+/* Desktop Icons Container */
+#desktop-icons-container {
+    /* On desktop, this is transparent and allows absolute positioning */
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
 /* Desktop Icons */
 .desktop-icon {
     position: absolute;
