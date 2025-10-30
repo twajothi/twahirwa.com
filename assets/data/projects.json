@@ -1,10 +1,36 @@
 {
   "projects": [
- 
+    {
+      "id": "multi-agent-asset-manager",
+      "title": "Multi-Agent Parallel Processing for Asset Manager Workflow",
+      "description": "An advanced agentic system leveraging parallel multi-agent architecture to optimize asset management workflows. This platform orchestrates specialized AI agents that work concurrently on portfolio analysis, risk assessment, market sentiment analysis, and trade execution recommendations. Built with LangGraph for agent coordination and state management, featuring real-time data ingestion from financial APIs, distributed task queuing, and intelligent decision fusion. Designed to reduce analysis time from hours to minutes while maintaining institutional-grade accuracy and compliance. 🚧 Under active development.",
+      "technologies": ["Python", "LangGraph", "LangChain", "OpenAI", "Redis", "PostgreSQL", "FastAPI", "Celery"],
+      "github": "https://github.com/twajothi/multi-agent-asset-workflow",
+      "featured": true,
+      "category": "Finance × AI"
+    },
+    {
+      "id": "futuristic-datalake",
+      "title": "Futuristic Self-Managed DataLake with Ontology",
+      "description": "A next-generation autonomous data lake platform that intelligently organizes, catalogs, and evolves its own structure using semantic ontologies and knowledge graphs. The system automatically discovers data relationships, infers schemas, detects anomalies, and suggests optimizations without manual intervention. Features include: dynamic schema evolution, semantic search powered by vector embeddings, automated data quality monitoring, intelligent partitioning strategies, and self-healing capabilities. Built on modern lakehouse architecture (Delta Lake/Iceberg) with AI-driven metadata management, making data governance effortless and data discovery instant. 🚧 Architecture phase.",
+      "technologies": ["Python", "Delta Lake", "Neo4j", "Apache Iceberg", "DuckDB", "Milvus", "LangChain", "Ray"],
+      "github": "https://github.com/twajothi/self-managed-datalake",
+      "featured": true,
+      "category": "Data Engineering × AI"
+    },
+    {
+      "id": "cognee-alternative",
+      "title": "Enterprise Knowledge Graph Engine (Cognee Alternative)",
+      "description": "An open-source alternative to Cognee, focusing on enterprise-grade memory and knowledge graph management for AI applications. This system transforms unstructured data into structured, queryable knowledge graphs with temporal awareness and provenance tracking. Key features include: incremental knowledge updates, multi-modal data ingestion (text, PDFs, audio transcripts), conflict resolution for contradictory information, fine-grained access control, and optimized retrieval for RAG applications. Designed for financial services and healthcare where accuracy, auditability, and compliance are paramount. Offers better performance and cost-efficiency compared to existing solutions. 🚧 Research & prototyping stage.",
+      "technologies": ["Python", "Neo4j", "Weaviate", "FastAPI", "Pydantic", "spaCy", "LangChain", "Redis"],
+      "github": "https://github.com/twajothi/knowledge-graph-engine",
+      "featured": true,
+      "category": "AI Infrastructure"
+    },
     {
       "id": "esg-analytics",
       "title": "ESG Analytics Platform", 
-      "description": "...under construction....",
+      "description": "Open-source tools for sustainability data analysis and visualization. Advanced ESG scoring algorithms, carbon footprint tracking, and regulatory compliance monitoring. Features real-time ESG metrics dashboards, machine learning models for risk prediction, and integration with major ESG data providers. Built to democratize sustainable finance analytics. 🚧 Beta testing phase.",
       "technologies": ["Python", "Spark", "D3.js", "Cloud"],
       "github": "https://github.com/twajothi/esg-analytics",
       "featured": true,

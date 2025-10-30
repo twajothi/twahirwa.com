@@ -41,6 +41,43 @@ class MobileOptimizer {
         
         // Prevent zoom on input focus
         this.preventInputZoom();
+        
+        // Optimize icon grid for mobile
+        this.optimizeIconGrid();
+        
+        // Add haptic feedback support
+        this.setupHapticFeedback();
+    }
+    
+    optimizeIconGrid() {
+        const iconsContainer = document.getElementById('desktop-icons-container');
+        if (!iconsContainer || !this.isSmallScreen) return;
+        
+        // Add touch-action to container for better scroll performance
+        iconsContainer.style.touchAction = 'pan-y';
+        
+        // Ensure icons are properly sized
+        const icons = iconsContainer.querySelectorAll('.desktop-icon');
+        icons.forEach(icon => {
+            // Remove conflicting inline styles on mobile
+            if (this.isSmallScreen) {
+                icon.style.position = '';
+                icon.style.top = '';
+                icon.style.left = '';
+            }
+        });
+    }
+    
+    setupHapticFeedback() {
+        if (!navigator.vibrate) return;
+        
+        // Add subtle haptic feedback to touch interactions
+        document.querySelectorAll('.desktop-icon, .window-control, .start-menu-item').forEach(element => {
+            element.addEventListener('touchstart', () => {
+                // Very light vibration (10ms)
+                navigator.vibrate(10);
+            }, { passive: true });
+        });
     }
 
     addTouchEvents() {
@@ -93,20 +130,28 @@ class MobileOptimizer {
 
     handleIconTouch(e) {
         e.preventDefault();
+        
+        // Get the actual icon element (might be clicking on child)
+        let icon = e.target.closest('.desktop-icon');
+        if (!icon) return;
+        
         // Add touch feedback
-        e.target.style.transform = 'scale(0.95)';
+        icon.style.transform = 'scale(0.92)';
         setTimeout(() => {
-            e.target.style.transform = 'scale(1)';
+            icon.style.transform = 'scale(1)';
         }, 150);
 
         // Double-tap to open
-        if (e.target.dataset.lastTap && (Date.now() - e.target.dataset.lastTap) < 300) {
-            const windowId = e.target.getAttribute('data-window');
+        if (icon.dataset.lastTap && (Date.now() - icon.dataset.lastTap) < 300) {
+            const windowId = icon.getAttribute('data-window');
             if (windowId && window.windowManager) {
                 window.windowManager.openWindow(windowId);
             }
+            // Clear the last tap to prevent triple-tap issues
+            icon.dataset.lastTap = null;
+        } else {
+            icon.dataset.lastTap = Date.now();
         }
-        e.target.dataset.lastTap = Date.now();
     }
 
     recordTouchStart(e) {
@@ -317,7 +362,12 @@ class MobileOptimizer {
             this.isSmallScreen = window.innerWidth <= 768;
             if (this.isSmallScreen) {
                 this.setupMobileNavigation();
+                this.optimizeIconGrid();
             }
+            
+            // Update viewport height for iOS Safari
+            let vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', `${vh}px`);
         }, 100);
     }
 
