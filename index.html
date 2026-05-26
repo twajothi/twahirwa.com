@@ -3,7 +3,7 @@
 <head>
     <!-- Essential Meta Tags -->
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     
     <!-- iOS Safari Optimizations -->
@@ -55,6 +55,11 @@
     <link rel="preload" href="/assets/css/main.css" as="style">
     <link rel="preload" href="/assets/js/init.js" as="script">
 
+    <!-- Fonts (Professional Mode) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&family=Inter+Tight:wght@300..700&family=JetBrains+Mono:wght@400;500&display=swap">
+
     <!-- CSS Files -->
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="assets/css/windows.css">
@@ -62,6 +67,20 @@
     <link rel="stylesheet" href="assets/css/responsive.css">
     <link rel="stylesheet" href="assets/css/mobile.css">
     <link rel="stylesheet" href="assets/css/mobile-enhanced.css">
+    <link rel="stylesheet" href="assets/css/professional.css">
+
+    <!-- Mode bootstrap (set as early as possible to prevent FOUC) -->
+    <script>
+        (function () {
+            try {
+                var m = localStorage.getItem('twahirwa-mode');
+                if (m !== 'professional' && m !== 'creative') m = 'creative';
+                document.documentElement.setAttribute('data-mode', m);
+            } catch (e) {
+                document.documentElement.setAttribute('data-mode', 'creative');
+            }
+        })();
+    </script>
 
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
@@ -442,9 +461,473 @@
         <button class="start-button" id="start-button">START</button>
         <div class="taskbar-items" id="taskbar-items"></div>
         <div class="system-tray">
+            <button class="creative-mode-toggle" data-mode-toggle data-target="professional" aria-label="Switch to professional portfolio mode">
+                <span class="creative-mode-toggle__icon" aria-hidden="true">◐</span>
+                <span class="creative-mode-toggle__label">PRO_MODE</span>
+            </button>
             <span id="clock">00:00</span>
             <span>|</span>
             <span>MODE: <span style="color: #0f0;">CREATIVE</span></span>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         PROFESSIONAL MODE — macOS-style desktop OS
+         Quant / Data / AI Portfolio · TJT.app
+         ============================================================ -->
+    <div id="professional-mode">
+        <!-- Wallpaper -->
+        <div class="pro-wallpaper" aria-hidden="true">
+            <div class="pro-wallpaper__mesh"></div>
+            <div class="pro-wallpaper__grain"></div>
+        </div>
+
+        <!-- Menu bar -->
+        <header class="pro-menubar">
+            <div class="pro-menubar__left">
+                <button class="pro-menubar__brand" type="button">
+                    <span class="pro-brand-mark" aria-hidden="true"></span>
+                    <span>Twahirwa</span>
+                </button>
+                <span class="pro-menubar__app">Quant.app</span>
+                <nav class="pro-menubar__nav" aria-label="App menu">
+                    <button type="button">File</button>
+                    <button type="button">View</button>
+                    <button type="button">Window</button>
+                    <button type="button">Help</button>
+                </nav>
+            </div>
+            <div class="pro-menubar__right">
+                <span class="pro-menubar__ticker" aria-label="SPX index">
+                    <span class="pro-ticker__label">SPX</span>
+                    <span class="pro-ticker__value pro-up" id="pro-ticker-val">+0.42%</span>
+                </span>
+                <span class="pro-menubar__status">
+                    <span class="pro-pulse-dot" aria-hidden="true"></span>
+                    Live
+                </span>
+                <time class="pro-menubar__clock" id="pro-clock">— —:— —</time>
+                <button class="pro-mode-toggle pro-mode-toggle--attention" data-mode-toggle data-target="creative" aria-label="Switch to creative OS mode">
+                    <span class="pro-mode-toggle__dot" aria-hidden="true"></span>
+                    <span>creative.os</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Desktop -->
+        <main class="pro-desktop">
+            <!-- Spotlight (always-visible hero on desktop) -->
+            <section class="pro-spotlight" aria-labelledby="pro-spot-title">
+                <p class="pro-spotlight__eyebrow">Portfolio · MMXXVI</p>
+                <h1 class="pro-spotlight__name" id="pro-spot-title">
+                    Thibault <em>J.</em><br>Twahirwa<span>.</span>
+                </h1>
+                <p class="pro-spotlight__role">
+                    Quantitative researcher · data scientist · music producer · quantum enthusiast.
+                    7+ years building systems at the intersection of capital markets, applied AI,
+                    and sustainable finance. Based in New York.
+                </p>
+                <p class="pro-spotlight__hint">
+                    Open an item below
+                    <span class="pro-arr-down" aria-hidden="true">↓</span>
+                </p>
+            </section>
+
+            <!-- Desktop widgets -->
+            <section class="pro-widgets" aria-label="Desktop widgets">
+                <article class="pro-widget pro-widget--ledger">
+                    <header class="pro-widget__head">
+                        <h2 class="pro-widget__title">At a glance</h2>
+                        <span class="pro-widget__caption">— ledger</span>
+                    </header>
+                    <dl>
+                        <div class="pro-row"><dt>Discipline</dt><dd>Quant · Data · ML · ESG</dd></div>
+                        <div class="pro-row"><dt>Tenure</dt><dd>7+ years</dd></div>
+                        <div class="pro-row"><dt>Stack</dt><dd>Python · JAX · kdb+ · CUDA</dd></div>
+                        <div class="pro-row"><dt>Education</dt><dd>Columbia · Notre Dame · Morehouse</dd></div>
+                        <div class="pro-row"><dt>Read</dt><dd>EN · FR · KIN</dd></div>
+                    </dl>
+                </article>
+
+                <article class="pro-widget pro-widget--markets">
+                    <header class="pro-widget__head">
+                        <h2 class="pro-widget__title">Markets</h2>
+                        <span class="pro-widget__caption">— live</span>
+                    </header>
+                    <div class="pro-markets">
+                        <div class="pro-market">
+                            <span class="pro-market__sym">SPX</span>
+                            <span class="pro-market__val">5,847.16</span>
+                            <span class="pro-market__delta pro-up">+0.42%</span>
+                        </div>
+                        <div class="pro-market">
+                            <span class="pro-market__sym">VIX</span>
+                            <span class="pro-market__val">14.28</span>
+                            <span class="pro-market__delta pro-down">−1.86%</span>
+                        </div>
+                    </div>
+                    <svg class="pro-spark" viewBox="0 0 100 36" preserveAspectRatio="none">
+                        <polygon class="pro-spark__fill" points="0,36 100,36"/>
+                        <polyline class="pro-spark__line" points="0,18 100,18"/>
+                    </svg>
+                </article>
+
+                <article class="pro-widget pro-widget--now">
+                    <div class="pro-now__art" aria-hidden="true"></div>
+                    <div class="pro-now__body">
+                        <p class="pro-now__label">Now Playing — DJ Mode</p>
+                        <p class="pro-now__title">Data Rhythms</p>
+                    </div>
+                    <div class="pro-now__bars" aria-hidden="true">
+                        <span></span><span></span><span></span><span></span><span></span>
+                    </div>
+                </article>
+            </section>
+        </main>
+
+        <!-- ============================================================
+             WINDOWS
+             ============================================================ -->
+
+        <!-- About -->
+        <article class="pro-window" data-app="about" role="dialog" aria-labelledby="win-about-title">
+            <header class="pro-window__chrome">
+                <div class="pro-window__lights" aria-label="Window controls">
+                    <button class="pro-light pro-light--close" type="button" aria-label="Close"></button>
+                    <button class="pro-light pro-light--min"   type="button" aria-label="Minimize"></button>
+                    <button class="pro-light pro-light--max"   type="button" aria-label="Maximize"></button>
+                </div>
+                <h2 class="pro-window__title" id="win-about-title">About — Thibault J. Twahirwa</h2>
+            </header>
+            <div class="pro-window__body">
+                <p class="pro-h-eyebrow">Profile</p>
+                <h1 class="pro-h1">Thibault <em>J.</em> Twahirwa</h1>
+                <p class="pro-lede">Data Scientist · Music Producer · Quantum Enthusiast — 7+ years building systems at the intersection of capital markets, applied AI, and sustainable finance.</p>
+                <div class="pro-about__bio">
+                    <p>Currently focused on <strong>ESG analytics</strong>, factor research, and applied AI for systematic strategies. Published researcher with prior work in quantum-dot heat transfer and field-emission micro-discharges.</p>
+                    <p>Multilingual technologist. Based in New York. Rwandan-American by background; Columbia · Notre Dame · Morehouse by training.</p>
+                </div>
+                <ul class="pro-tags" aria-label="Areas">
+                    <li>Quant Research</li>
+                    <li>Machine Learning</li>
+                    <li>ESG Analytics</li>
+                    <li>Sustainable Finance</li>
+                    <li>Music Production</li>
+                    <li>Quantum Physics</li>
+                </ul>
+            </div>
+        </article>
+
+        <!-- Work / Projects -->
+        <article class="pro-window" data-app="work" role="dialog" aria-labelledby="win-work-title">
+            <header class="pro-window__chrome">
+                <div class="pro-window__lights" aria-label="Window controls">
+                    <button class="pro-light pro-light--close" type="button" aria-label="Close"></button>
+                    <button class="pro-light pro-light--min"   type="button" aria-label="Minimize"></button>
+                    <button class="pro-light pro-light--max"   type="button" aria-label="Maximize"></button>
+                </div>
+                <h2 class="pro-window__title" id="win-work-title">Projects · Selected Work</h2>
+            </header>
+            <div class="pro-window__body">
+                <p class="pro-h-eyebrow">§ Portfolio</p>
+                <h2 class="pro-h2">Selected Work</h2>
+                <p class="pro-lede">Deployed systems and live research across quant, data, and applied AI.</p>
+
+                <ol class="pro-works">
+                    <li class="pro-work">
+                        <span class="pro-work__index" aria-hidden="true">01</span>
+                        <div>
+                            <h3 class="pro-work__title">Quantum Music Generator</h3>
+                            <p class="pro-work__desc">Converting quantum-particle behaviour into musical compositions — a bridge between physics, ML, and creative practice.</p>
+                            <ul class="pro-work__stack"><li>Python</li><li>Qiskit</li><li>MIDI</li><li>TensorFlow</li></ul>
+                        </div>
+                        <span class="pro-work__meta">
+                            <time>2023 — present</time>
+                            <span class="pro-pill" data-tone="research">research</span>
+                        </span>
+                    </li>
+                    <li class="pro-work">
+                        <span class="pro-work__index" aria-hidden="true">02</span>
+                        <div>
+                            <h3 class="pro-work__title">ESG Analytics Platform</h3>
+                            <p class="pro-work__desc">Open-source tools for sustainability data analysis and visualisation — built for analysts and quants needing reproducible ESG signal pipelines.</p>
+                            <ul class="pro-work__stack"><li>Python</li><li>Spark</li><li>D3.js</li><li>Cloud</li></ul>
+                        </div>
+                        <span class="pro-work__meta">
+                            <time>2022 — present</time>
+                            <span class="pro-pill">production</span>
+                        </span>
+                    </li>
+                    <li class="pro-work">
+                        <span class="pro-work__index" aria-hidden="true">03</span>
+                        <div>
+                            <h3 class="pro-work__title">Sonification-as-Inference</h3>
+                            <p class="pro-work__desc">Treating high-frequency market microstructure as audio. Self-supervised representations of order-book spectrograms surface anomalies that conventional surveillance misses.</p>
+                            <ul class="pro-work__stack"><li>torch</li><li>librosa</li><li>cuda</li></ul>
+                        </div>
+                        <span class="pro-work__meta">
+                            <time>2024 — present</time>
+                            <span class="pro-pill" data-tone="research">research</span>
+                        </span>
+                    </li>
+                    <li class="pro-work">
+                        <span class="pro-work__index" aria-hidden="true">04</span>
+                        <div>
+                            <h3 class="pro-work__title">Quantum-Inspired Portfolio Optimisation</h3>
+                            <p class="pro-work__desc">QAOA-style approaches to constrained mean-variance optimisation under realistic transaction-cost models. Internal whitepaper.</p>
+                            <ul class="pro-work__stack"><li>Qiskit</li><li>Gurobi</li><li>Python</li></ul>
+                        </div>
+                        <span class="pro-work__meta">
+                            <time>2022 — 2023</time>
+                            <span class="pro-pill" data-tone="whitepaper">whitepaper</span>
+                        </span>
+                    </li>
+                </ol>
+            </div>
+        </article>
+
+        <!-- Research -->
+        <article class="pro-window" data-app="research" role="dialog" aria-labelledby="win-research-title">
+            <header class="pro-window__chrome">
+                <div class="pro-window__lights" aria-label="Window controls">
+                    <button class="pro-light pro-light--close" type="button" aria-label="Close"></button>
+                    <button class="pro-light pro-light--min"   type="button" aria-label="Minimize"></button>
+                    <button class="pro-light pro-light--max"   type="button" aria-label="Maximize"></button>
+                </div>
+                <h2 class="pro-window__title" id="win-research-title">Research · Publications</h2>
+            </header>
+            <div class="pro-window__body">
+                <p class="pro-h-eyebrow">§ Research</p>
+                <h2 class="pro-h2">Published Research</h2>
+                <p class="pro-lede">Peer-reviewed work in nanoscience and field-emission physics, with current research extending into data sonification.</p>
+
+                <ul class="pro-papers">
+                    <li class="pro-paper">
+                        <span class="pro-paper__year">2014</span>
+                        <div>
+                            <h3 class="pro-paper__title">Quantum Dots &amp; Silver Nanoparticles</h3>
+                            <p class="pro-paper__authors">Enhanced heat transfer in quantum dots using synthesized silver nanoprism particles. <span class="pro-paper__sep">·</span> <em>Journal of Physical Chemistry</em></p>
+                        </div>
+                    </li>
+                    <li class="pro-paper">
+                        <span class="pro-paper__year">2014</span>
+                        <div>
+                            <h3 class="pro-paper__title">Electron Impact Ionization</h3>
+                            <p class="pro-paper__authors">Experimental study of field-emission-driven micro-discharges. <span class="pro-paper__sep">·</span> <em>Applied Physics</em></p>
+                        </div>
+                    </li>
+                    <li class="pro-paper">
+                        <span class="pro-paper__year">2026</span>
+                        <div>
+                            <h3 class="pro-paper__title">Data Sonification for Pattern Recognition</h3>
+                            <p class="pro-paper__authors">Converting complex datasets into audio signals for high-dimensional anomaly detection. <span class="pro-paper__sep">·</span> <em>In preparation</em></p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </article>
+
+        <!-- Markets -->
+        <article class="pro-window" data-app="markets" role="dialog" aria-labelledby="win-markets-title">
+            <header class="pro-window__chrome">
+                <div class="pro-window__lights" aria-label="Window controls">
+                    <button class="pro-light pro-light--close" type="button" aria-label="Close"></button>
+                    <button class="pro-light pro-light--min"   type="button" aria-label="Minimize"></button>
+                    <button class="pro-light pro-light--max"   type="button" aria-label="Maximize"></button>
+                </div>
+                <h2 class="pro-window__title" id="win-markets-title">Markets · Live Snapshot</h2>
+            </header>
+            <div class="pro-window__body">
+                <p class="pro-h-eyebrow">§ Live</p>
+                <h2 class="pro-h2">Markets &amp; Strategies</h2>
+                <p class="pro-lede">A live demo dashboard — illustrative only, refreshed for motion.</p>
+
+                <div class="pro-markets-grid">
+                    <div class="pro-market-card">
+                        <p class="pro-market-card__sym">S&amp;P 500</p>
+                        <p class="pro-market-card__val">5,847.16</p>
+                        <p class="pro-market-card__delta pro-up">+24.6 · +0.42%</p>
+                    </div>
+                    <div class="pro-market-card">
+                        <p class="pro-market-card__sym">VIX</p>
+                        <p class="pro-market-card__val">14.28</p>
+                        <p class="pro-market-card__delta pro-down">−0.27 · −1.86%</p>
+                    </div>
+                    <div class="pro-market-card">
+                        <p class="pro-market-card__sym">US10Y</p>
+                        <p class="pro-market-card__val">4.184%</p>
+                        <p class="pro-market-card__delta pro-up">+0.03 bp</p>
+                    </div>
+                    <div class="pro-market-card">
+                        <p class="pro-market-card__sym">BTC</p>
+                        <p class="pro-market-card__val">$ 92,418</p>
+                        <p class="pro-market-card__delta pro-up">+2.14%</p>
+                    </div>
+                </div>
+
+                <p class="pro-h-eyebrow" style="margin-top: 4px;">Strategy Track</p>
+                <div class="pro-strat">
+                    <span class="pro-strat__name">ESG Alpha · Long-Only</span>
+                    <span class="pro-strat__sharpe">Sharpe 2.41</span>
+                    <span class="pro-strat__perf pro-up">+47.2% YTD</span>
+                </div>
+                <div class="pro-strat">
+                    <span class="pro-strat__name">Quant-Inspired MV Opt.</span>
+                    <span class="pro-strat__sharpe">Sharpe 1.87</span>
+                    <span class="pro-strat__perf pro-up">+22.4%</span>
+                </div>
+                <div class="pro-strat">
+                    <span class="pro-strat__name">Macro Causal Lens</span>
+                    <span class="pro-strat__sharpe">Sharpe 1.32</span>
+                    <span class="pro-strat__perf pro-down">−1.4%</span>
+                </div>
+            </div>
+        </article>
+
+        <!-- Terminal -->
+        <article class="pro-window" data-app="terminal" role="dialog" aria-labelledby="win-terminal-title">
+            <header class="pro-window__chrome">
+                <div class="pro-window__lights" aria-label="Window controls">
+                    <button class="pro-light pro-light--close" type="button" aria-label="Close"></button>
+                    <button class="pro-light pro-light--min"   type="button" aria-label="Minimize"></button>
+                    <button class="pro-light pro-light--max"   type="button" aria-label="Maximize"></button>
+                </div>
+                <h2 class="pro-window__title" id="win-terminal-title">Terminal — tjt@quant ~ %</h2>
+            </header>
+            <div class="pro-window__body">
+                <div class="pro-term">
+                    <div class="pro-term__line"><span class="ps1">tjt@quant ~ %</span> <span class="arg">whoami</span></div>
+                    <div class="pro-term__out">Thibault J. Twahirwa — data scientist · quant researcher · NYC</div>
+                    <div class="pro-term__line">&nbsp;</div>
+                    <div class="pro-term__line"><span class="ps1">tjt@quant ~ %</span> <span class="arg">cat ~/now.txt</span></div>
+                    <div class="pro-term__out">Building ESG factor libraries and sonification-based inference.</div>
+                    <div class="pro-term__out">Open to research collaborations in sustainable finance &amp; applied AI.</div>
+                    <div class="pro-term__line">&nbsp;</div>
+                    <div class="pro-term__line"><span class="ps1">tjt@quant ~ %</span> <span class="arg">uname -a</span></div>
+                    <div class="pro-term__out">TWAHIRWA-OS · v.II Quant Edition · arm64 · NYC · 40.7°N 74.0°W</div>
+                    <div class="pro-term__line">&nbsp;</div>
+                    <div class="pro-term__line"><span class="ps1">tjt@quant ~ %</span> <span class="pro-term__cursor" aria-hidden="true"></span></div>
+                </div>
+            </div>
+        </article>
+
+        <!-- Connect -->
+        <article class="pro-window" data-app="connect" role="dialog" aria-labelledby="win-connect-title">
+            <header class="pro-window__chrome">
+                <div class="pro-window__lights" aria-label="Window controls">
+                    <button class="pro-light pro-light--close" type="button" aria-label="Close"></button>
+                    <button class="pro-light pro-light--min"   type="button" aria-label="Minimize"></button>
+                    <button class="pro-light pro-light--max"   type="button" aria-label="Maximize"></button>
+                </div>
+                <h2 class="pro-window__title" id="win-connect-title">Connect</h2>
+            </header>
+            <div class="pro-window__body">
+                <p class="pro-h-eyebrow">Correspondence</p>
+                <h2 class="pro-h2">Direct lines</h2>
+                <p class="pro-lede">NYC · 🇷🇼🇺🇸 Rwandan-American. Open to research collaborations.</p>
+
+                <div class="pro-connect">
+                    <a class="pro-connect__primary" href="mailto:thibault.twahirwa@gmail.com">
+                        <span>thibault.twahirwa@gmail.com</span>
+                        <span aria-hidden="true">→</span>
+                    </a>
+                    <ul class="pro-connect__links">
+                        <li><a href="#" data-platform="linkedin"><span>LinkedIn</span><span>↗</span></a></li>
+                        <li><a href="#" data-platform="github"><span>GitHub</span><span>↗</span></a></li>
+                        <li><a href="#" data-platform="instagram"><span>Instagram</span><span>↗</span></a></li>
+                        <li><a href="#" data-platform="youtube"><span>YouTube</span><span>↗</span></a></li>
+                        <li><a href="#" data-platform="tiktok"><span>TikTok</span><span>↗</span></a></li>
+                        <li><a href="#" data-platform="scholar"><span>Scholar</span><span>↗</span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </article>
+
+        <!-- ============================================================
+             DOCK
+             ============================================================ -->
+        <div class="pro-dock-wrap">
+            <div class="pro-dock" role="toolbar" aria-label="Application dock">
+                <button class="pro-dock__icon" data-open="about" type="button">
+                    <span class="pro-dock__sq" data-theme="ink">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <circle cx="12" cy="9" r="3.5"/>
+                            <path d="M5 19c1.4-3.4 4-5 7-5s5.6 1.6 7 5"/>
+                        </svg>
+                    </span>
+                    <span class="pro-dock__label">About</span>
+                    <span class="pro-dock__indicator" aria-hidden="true"></span>
+                </button>
+
+                <button class="pro-dock__icon" data-open="work" type="button">
+                    <span class="pro-dock__sq" data-theme="blue">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M4 18v-7l4 3 4-6 4 4 4-6"/>
+                            <path d="M4 20h16"/>
+                        </svg>
+                    </span>
+                    <span class="pro-dock__label">Projects</span>
+                    <span class="pro-dock__indicator" aria-hidden="true"></span>
+                </button>
+
+                <button class="pro-dock__icon" data-open="research" type="button">
+                    <span class="pro-dock__sq" data-theme="indigo">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M5 4h11l3 3v13H5z"/>
+                            <path d="M8 9h7M8 13h7M8 17h5"/>
+                        </svg>
+                    </span>
+                    <span class="pro-dock__label">Research</span>
+                    <span class="pro-dock__indicator" aria-hidden="true"></span>
+                </button>
+
+                <button class="pro-dock__icon" data-open="markets" type="button">
+                    <span class="pro-dock__sq" data-theme="green">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M4 16l4-4 3 3 4-6 5 7"/>
+                            <path d="M4 20h16"/>
+                        </svg>
+                    </span>
+                    <span class="pro-dock__label">Markets</span>
+                    <span class="pro-dock__indicator" aria-hidden="true"></span>
+                </button>
+
+                <span class="pro-dock__sep" aria-hidden="true"></span>
+
+                <button class="pro-dock__icon" data-open="terminal" type="button">
+                    <span class="pro-dock__sq" data-theme="charcoal">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M5 8l4 4-4 4"/>
+                            <path d="M12 17h7"/>
+                        </svg>
+                    </span>
+                    <span class="pro-dock__label">Terminal</span>
+                    <span class="pro-dock__indicator" aria-hidden="true"></span>
+                </button>
+
+                <button class="pro-dock__icon" data-open="connect" type="button">
+                    <span class="pro-dock__sq" data-theme="orange">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <rect x="3.5" y="6" width="17" height="13" rx="2"/>
+                            <path d="M4 8l8 6 8-6"/>
+                        </svg>
+                    </span>
+                    <span class="pro-dock__label">Connect</span>
+                    <span class="pro-dock__indicator" aria-hidden="true"></span>
+                </button>
+
+                <span class="pro-dock__sep" aria-hidden="true"></span>
+
+                <button class="pro-dock__icon pro-dock__icon--mode" data-mode-toggle data-target="creative" type="button" aria-label="Switch to creative OS mode">
+                    <span class="pro-dock__sq" data-theme="purple">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <circle cx="12" cy="12" r="7"/>
+                            <path d="M12 5v14M5 12h14"/>
+                        </svg>
+                    </span>
+                    <span class="pro-dock__label">Switch to Creative</span>
+                </button>
+            </div>
         </div>
     </div>
 
@@ -456,5 +939,7 @@
     <script src="assets/js/app.js"></script>
     <script src="assets/js/mobile.js"></script>
     <script src="assets/js/init.js"></script>
+    <script src="assets/js/mode-toggle.js"></script>
+    <script src="assets/js/professional.js"></script>
 </body>
 </html>

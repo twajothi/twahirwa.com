@@ -2,15 +2,11 @@
 
 /* Performance optimizations for mobile */
 @media (max-width: 768px) {
-    /* Optimize performance */
-    * {
-        -webkit-transform: translateZ(0);
-        transform: translateZ(0);
-        -webkit-backface-visibility: hidden;
-        backface-visibility: hidden;
-    }
-
-    /* Enable hardware acceleration for smooth scrolling */
+    /* Enable hardware acceleration for smooth scrolling.
+       NOTE: Do NOT apply `transform: translateZ(0)` via the universal (`*`)
+       selector — it makes every element a containing block for any
+       descendant `position: fixed`, which breaks the taskbar, start menu,
+       FAB, and windows on mobile. */
     body {
         -webkit-overflow-scrolling: touch;
         overflow-scrolling: touch;
