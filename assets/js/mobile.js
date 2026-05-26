@@ -276,26 +276,19 @@ class MobileOptimizer {
     }
 
     optimizeWindowsForMobile() {
-        // Override window positioning for mobile
-        const originalOpenWindow = window.windowManager?.openWindow;
-        if (originalOpenWindow) {
-            window.windowManager.openWindow = function(windowId) {
-                const result = originalOpenWindow.call(this, windowId);
-                
-                if (window.innerWidth <= 768) {
-                    const windowElement = document.getElementById(windowId + '-window');
-                    if (windowElement) {
-                        windowElement.style.left = '5%';
-                        windowElement.style.top = '5%';
-                        windowElement.style.width = '90%';
-                        windowElement.style.height = '85%';
-                        windowElement.style.maxWidth = 'none';
-                        windowElement.style.maxHeight = 'none';
-                    }
-                }
-                
-                return result;
-            };
+        // Clear any leftover inline sizing on the elements at boot so the
+        // mobile CSS (`mobile-enhanced.css` `.window` rules) governs layout.
+        // The inline `style="left/top/width/height"` attributes from
+        // `index.html` are only meaningful on desktop.
+        if (window.innerWidth <= 768) {
+            document.querySelectorAll('.window').forEach(el => {
+                el.style.removeProperty('left');
+                el.style.removeProperty('top');
+                el.style.removeProperty('width');
+                el.style.removeProperty('height');
+                el.style.removeProperty('max-width');
+                el.style.removeProperty('max-height');
+            });
         }
     }
 
@@ -316,13 +309,9 @@ class MobileOptimizer {
     }
 
     addMobileMetaTags() {
-        // Prevent viewport zoom
-        let viewport = document.querySelector('meta[name="viewport"]');
-        if (viewport) {
-            viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
-        }
-        
-        // Add mobile web app capabilities
+        // Add mobile web app capabilities. The viewport meta is set in
+        // index.html — don't overwrite it here, which would re-disable
+        // pinch-zoom and hurt accessibility.
         this.addMetaTag('mobile-web-app-capable', 'yes');
         this.addMetaTag('apple-mobile-web-app-capable', 'yes');
         this.addMetaTag('apple-mobile-web-app-status-bar-style', 'black-translucent');

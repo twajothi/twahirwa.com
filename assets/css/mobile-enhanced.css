@@ -44,11 +44,17 @@
 
 /* ===== Mobile Grid Layout for Desktop Icons ===== */
 @media (max-width: 768px) {
+    /* Use the dynamic viewport unit (`dvh`) so the desktop sizes itself
+       against the *visible* viewport — i.e. excluding the iOS Safari URL
+       bar and Android browser chrome. Fall back to 100vh for older browsers.
+       The taskbar on mobile is 50px tall + safe-area-bottom, so subtract that. */
     #desktop {
+        height: calc(100vh - 50px - var(--safe-area-inset-bottom));
+        height: calc(100dvh - 50px - var(--safe-area-inset-bottom));
         padding-top: var(--safe-area-inset-top);
         padding-left: var(--mobile-padding);
         padding-right: var(--mobile-padding);
-        padding-bottom: calc(60px + var(--safe-area-inset-bottom));
+        padding-bottom: 12px;
     }
     
     /* Desktop icons container with grid */
@@ -511,14 +517,9 @@
     }
 }
 
-/* ===== Fix for iOS Safari URL bar ===== */
+/* ===== Fix for iOS Safari URL bar (dvh fallback for older iOS) ===== */
 @supports (-webkit-touch-callout: none) {
     @media (max-width: 768px) {
-        #desktop {
-            height: 100vh;
-            height: -webkit-fill-available;
-        }
-        
         body {
             height: 100vh;
             height: -webkit-fill-available;

@@ -100,11 +100,11 @@
     font-weight: 500;
 }
 
-/* Floating Action Button */
+/* Floating Action Button — positioned above the mobile taskbar (50px) + safe-area */
 .mobile-fab {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
+    bottom: calc(50px + env(safe-area-inset-bottom, 0px) + 12px);
+    right: calc(16px + env(safe-area-inset-right, 0px));
     width: var(--mobile-fab-size);
     height: var(--mobile-fab-size);
     background: linear-gradient(45deg, #0ff, #00a8cc);
@@ -443,8 +443,8 @@
     }
 
     .mobile-fab {
-        bottom: 15px;
-        right: 15px;
+        bottom: calc(50px + env(safe-area-inset-bottom, 0px) + 8px);
+        right: calc(12px + env(safe-area-inset-right, 0px));
     }
 }
 
