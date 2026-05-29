@@ -515,7 +515,7 @@
             whoami: function () { writeLine('Thibault J. Twahirwa'); },
             date:   function () { writeLine(new Date().toString()); },
             pwd:    function () { writeLine('/Users/tjt'); },
-            uname:  function () { writeLine('TWAHIRWA-OS · v.II Quant Edition · arm64 · NYC · 40.7°N 74.0°W'); },
+            uname:  function () { writeLine('TWAHIRWA-OS · v.III Credit Edition · arm64 · NYC · 40.7°N 74.0°W'); },
 
             echo: function (arg) { writeLine(escapeHTML(arg || '')); },
 

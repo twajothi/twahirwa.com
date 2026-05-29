@@ -1206,6 +1206,7 @@ html[data-mode="professional"] body {
     padding: 16px 0;
     border-top: 0.5px solid var(--separator);
 }
+.pro-papers--no-year .pro-paper { grid-template-columns: 1fr; }
 .pro-paper:first-child { border-top: 0; padding-top: 0; }
 .pro-paper__year {
     font-family: var(--font-mono);
